@@ -18,11 +18,12 @@ matrix:
 before_script:
   - mix deps.get --only test
   - nvm install 8.0 && nvm use 8.0
+  - npm install -g elm
 
 script:
   - mix test
   - cd installer && mix test
-  - cd ../ && npm install && npm test
+  - cd ../ && npm install && npm run build && npm test
 
 after_script:
   - cd $TRAVIS_BUILD_DIR
