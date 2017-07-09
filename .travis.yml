@@ -21,9 +21,10 @@ before_script:
   - npm install -g elm
 
 script:
+  - npm install
+  - npm run build
   - mix test
-  - cd installer && mix test
-  - cd ../ && npm install && npm run build && npm test
+  - npm test
 
 after_script:
   - cd $TRAVIS_BUILD_DIR
