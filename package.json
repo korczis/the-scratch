@@ -1,0 +1,50 @@
+{
+  "name": "web-spa",
+  "version": "0.0.1",
+  "description": "Single Page Application written in Elm with Elixir/Phoenix Backend",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node_modules/webpack/bin/webpack.js --progress --color --config webpack/webpack.config.js",
+    "watch": "node_modules/webpack/bin/webpack.js --watch-stdin --progress --color --config webpack/webpack.config.js",
+    "elm-format": "./node_modules/elm-format/bin/elm-format web/elm/"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "bootstrap-sass": "^3.3.7",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.4",
+    "elm-format": "^0.6.1-alpha",
+    "elm-hot-loader": "^0.5.4",
+    "elm-test": "^0.18.7",
+    "elm-webpack-loader": "^4.3.1",
+    "exports-loader": "^0.6.4",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.29.0",
+    "imports-loader": "^0.7.1",
+    "node-sass": "^4.5.3",
+    "resolve-url-loader": "^2.1.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0",
+    "webpack-merge": "^4.1.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap-loader": "^2.1.0",
+    "elm-assets-loader": "^0.3.0",
+    "font-awesome": "^4.7.0",
+    "tether": "^1.4.0"
+  }
+}
