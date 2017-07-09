@@ -1,0 +1,30 @@
+language: elixir
+
+sudo: false
+
+matrix:
+  include:
+    - otp_release: 18.3
+      elixir: 1.3
+      script: mix test
+    - otp_release: 19.3
+      elixir: 1.3
+      script: mix test
+    - otp_release: 18.3
+      elixir: 1.4
+    - otp_release: 19.3
+      elixir: 1.4
+
+before_script:
+  - mix deps.get --only test
+  - nvm install 8.0 && nvm use 8.0
+
+script:
+  - mix test
+  - cd installer && mix test
+  - cd ../ && npm install && npm test
+
+after_script:
+  - cd $TRAVIS_BUILD_DIR
+  - mix deps.get --only docs
+  - MIX_ENV=docs mix inch.report
