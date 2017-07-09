@@ -51,7 +51,7 @@ module.exports = {
                             tagger: 'AssetPath'
                         }
                     },
-                    'elm-hot-loader',
+                    // 'elm-hot-loader',
                     'elm-webpack-loader?forceWatch=true'
                 ]
             },
