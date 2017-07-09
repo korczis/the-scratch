@@ -1,5 +1,11 @@
 # About
 
+## Status
+
+[![Build Status](https://travis-ci.org/korczis/web-spa.svg?branch=master)](https://travis-ci.org/korczis/web-spa)
+
+## Getting started
+
 To start your Phoenix app:
 
   * Install dependencies with `mix deps.get`
