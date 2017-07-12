@@ -34,10 +34,10 @@
 
 ## Prerequisites
 
-- nodejs
-- elm
-- elixir
-- phoenix
+- [nodejs](https://nodejs.org/en/)
+- [elm](http://elm-lang.org/)
+- [elixir](https://elixir-lang.org/)
+- [phoenix](http://www.phoenixframework.org/)
 
 ## Getting started
 
