@@ -12,6 +12,7 @@
   - [ ] Sign In
   - [ ] Sign Up
 - [x] Bootstrap Integration
+  - [x] Carousel
   - [x] Navigation Bar
 - [ ] Client Side Logging
 - [ ] Google Analytics
