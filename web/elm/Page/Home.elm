@@ -1,13 +1,47 @@
 module Page.Home exposing (Model, view)
 
+import Bootstrap.Carousel as Carousel
+import Bootstrap.Carousel.Slide as Slide
 import Html exposing (..)
+import Html.Attributes exposing(..)
+import Assets
 import Msg
 
 
 type alias Model =
-    {}
+    Carousel.State
 
 
-view : Html Msg.Msg
-view =
-    div [] [ text "Home" ]
+view : Model -> Html Msg.Msg
+view model =
+    Carousel.config Msg.CarouselMsg []
+        |> Carousel.withControls
+        |> Carousel.withIndicators
+        |> Carousel.slides
+            [ Slide.config [] (Slide.image [] (Assets.path <| Assets.kitten1))
+                |> Slide.caption []
+                    [ h4 [] [ text "Slide 1 label"]
+                    , p [] [ text "Subtitle for slide 1"]
+                    ]
+            , Slide.config [] (Slide.image [] (Assets.path <| Assets.kitten2))
+                |> Slide.caption []
+                    [ h4 [] [ text "Slide 2 label"]
+                    , p [] [ text "Subtitle for slide 2"]
+                    ]
+            , Slide.config [] (Slide.image [] (Assets.path <| Assets.kitten3))
+                |> Slide.caption []
+                    [ h4 [] [ text "Slide 3 label"]
+                    , p [] [ text "Subtitle for slide 3"]
+                    ]
+            , Slide.config [] (Slide.image [] (Assets.path <| Assets.kitten4))
+                |> Slide.caption []
+                    [ h4 [] [ text "Slide 4 label"]
+                    , p [] [ text "Subtitle for slide 4"]
+                    ]
+            , Slide.config [] (Slide.image [] (Assets.path <| Assets.kitten5))
+                |> Slide.caption []
+                    [ h4 [] [ text "Slide 5 label"]
+                    , p [] [ text "Subtitle for slide 5"]
+                    ]
+            ]
+        |> Carousel.view model

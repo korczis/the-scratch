@@ -70,7 +70,7 @@ module.exports = {
                 loaders: ["style-loader", "css-loader"]
             },
             {
-                test: /\.(woff2?|svg|png)$/,
+                test: /\.(woff2?|svg|png|jpg)$/,
                 loader: 'url-loader?limit=10000'
             },
             {

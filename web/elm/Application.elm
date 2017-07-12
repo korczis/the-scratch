@@ -2,6 +2,8 @@ module Application exposing (..)
 
 import Bootstrap.Alert as Alert
 import Bootstrap.Button as Button
+import Bootstrap.Carousel as Carousel
+import Bootstrap.Carousel.Slide as Slide
 import Bootstrap.Form.Input as Input
 import Bootstrap.Grid as Grid
 import Bootstrap.Navbar as Navbar
@@ -17,10 +19,13 @@ import Data.Session as Session
 import Data.User as User
 import Msg
 import Model exposing (Model)
+import Navbar
 import Page
 import Page.Home
 import Page.Map
 import Page.NotFound
+import Page.SignIn
+import Page.SignUp
 import Ports
 import Route
 import Util exposing ((=>))
@@ -45,6 +50,7 @@ init value location =
                 , navbar =
                     { state = navbarState
                     }
+                , carousel = Carousel.initialState
                 , page = Page.Loaded Page.initialPage
                 , session = { user = Nothing
                     , socket = Phoenix.Socket.init socketServer
@@ -86,6 +92,12 @@ setRoute maybeRoute model =
         Just Route.Map ->
             { model | page = Page.Loaded Page.Map } => Cmd.none
 
+        Just Route.SignIn ->
+            { model | page = Page.Loaded Page.SignIn } => Cmd.none
+
+        Just Route.SignUp ->
+            { model | page = Page.Loaded Page.SignUp } => Cmd.none
+
 update : Msg.Msg -> Model -> ( Model, Cmd Msg.Msg )
 update msg model =
     updatePage (Page.getPage model.page) msg model
@@ -112,6 +124,9 @@ updatePage page msg model =
 
             ( Msg.Inc, _ ) ->
                 { model | counter = model.counter + 1 } ! []
+
+            ( Msg.CarouselMsg subMsg, _ ) ->
+                { model | carousel = Carousel.update subMsg model.carousel } ! []
 
             ( Msg.NavbarMsg state, _ ) ->
                 let
@@ -159,44 +174,6 @@ updatePage page msg model =
 -- VIEW
 
 
-navbar : Model -> Html Msg.Msg
-navbar model =
-    div []
-        [ Navbar.config Msg.NavbarMsg
-            |> Navbar.withAnimation
-            |> Navbar.brand
-                [ href "/#/" ]
-                [ img
-                    [ src (Assets.path <| Assets.net)
-                    , class "d-inline-block"
-                    , style
-                        [ ( "width", "30px" )
-                        , ( "margin-right", "15px" )
-                        ]
-                    ]
-                    []
-                , text "Web SPA"
-                ]
-            |> Navbar.items
-                [ Navbar.itemLink [ href "/#/map" ] [ text "Map" ]
-                ]
-            |> Navbar.customItems
-                -- Add custom items
-                [ Navbar.formItem []
-                    [ Input.text [ Input.attrs <| [ placeholder "enter" ] ]
-                    , Button.button
-                        [ Button.success
-                        , Button.attrs [ class "ml-sm-2" ]
-                        ]
-                        [ text "Search" ]
-                    ]
-                , Navbar.textItem [ class "muted ml-sm-2" ] [ text "Sign in" ]
-                , Navbar.textItem [ class "muted ml-sm-2" ] [ text "Sign up" ]
-                ]
-            |> Navbar.view model.navbar.state
-        ]
-
-
 mainContent : Model -> Html Msg.Msg
 mainContent model =
     div
@@ -222,29 +199,38 @@ mainContent model =
         ]
 
 
-viewPage : Page.State -> Html Msg.Msg
-viewPage page =
-    case page of
-        Page.Loaded Page.Blank ->
-            div [] [ text "Blank" ]
+viewPage : Model.Model -> Html Msg.Msg
+viewPage model =
+    let
+        page = model.page
+    in
+        case page of
+            Page.Loaded Page.Blank ->
+                div [] [ text "Blank" ]
 
-        Page.Loaded Page.Home ->
-            Page.Home.view
+            Page.Loaded Page.Home ->
+                Page.Home.view model.carousel
 
-        Page.Loaded Page.Map ->
-            Page.Map.view
+            Page.Loaded Page.Map ->
+                Page.Map.view
 
-        Page.Loaded Page.NotFound ->
-            Page.NotFound.view
+            Page.Loaded Page.NotFound ->
+                Page.NotFound.view
 
-        Page.TransitioningFrom _ ->
-            div [] []
+            Page.Loaded Page.SignIn ->
+                Page.SignIn.view
+
+            Page.Loaded Page.SignUp ->
+                Page.SignUp.view
+
+            Page.TransitioningFrom _ ->
+                div [] []
 
 view : Model -> Html Msg.Msg
 view model =
     div []
-        [ navbar model -- Interactive and responsive menu
-        , viewPage model.page
+        [ Navbar.navbar model -- Interactive and responsive menu
+        , viewPage model
 
         -- , mainContent model
         ]
@@ -260,6 +246,7 @@ subscriptions model =
         [ Navbar.subscriptions model.navbar.state Msg.NavbarMsg
         , Sub.map Msg.SetUser sessionChange
         , Phoenix.Socket.listen model.session.socket Msg.PhoenixMsg
+        , Carousel.subscriptions model.carousel Msg.CarouselMsg
         ]
 
 

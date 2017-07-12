@@ -8,6 +8,8 @@ type Page
     | NotFound
     | Home -- Page.Home.Model
     | Map
+    | SignIn
+    | SignUp
 
 
 type State
