@@ -9,6 +9,12 @@
 ### Core
 
 - [ ] Authentication
+  - [ ] OAuth
+    - [ ] Github
+    - [ ] Google
+    - [ ] Facebook
+    - [ ] LinkedIn
+    - [ ] Twitter
   - [ ] Sign In
   - [ ] Sign Up
 - [x] Bootstrap Integration
