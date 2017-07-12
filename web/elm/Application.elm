@@ -2,7 +2,7 @@ module Application exposing (..)
 
 import Bootstrap.Alert as Alert
 import Bootstrap.Button as Button
-import Bootstrap.Carousel as Carousel
+import Bootstrap.Carousel as Carousel exposing (defaultStateOptions)
 import Bootstrap.Carousel.Slide as Slide
 import Bootstrap.Form.Input as Input
 import Bootstrap.Grid as Grid
@@ -50,7 +50,11 @@ init value location =
                 , navbar =
                     { state = navbarState
                     }
-                , carousel = Carousel.initialState
+                , carousel = Carousel.initialStateWithOptions
+                    { defaultStateOptions
+                    | interval = Just 5000 -- Change slide every 5 seconds
+                    , pauseOnHover = False -- Prevent the default behavior to pause the transitions on mouse hover
+                    }
                 , page = Page.Loaded Page.initialPage
                 , session = { user = Nothing
                     , socket = Phoenix.Socket.init socketServer
