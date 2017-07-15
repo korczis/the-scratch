@@ -52,7 +52,7 @@ module.exports = {
                         }
                     },
                     // 'elm-hot-loader',
-                    'elm-webpack-loader?forceWatch=true'
+                    'elm-webpack-loader?forceWatch=true&pathToMake=./node_modules/elm/binwrappers/elm-make'
                 ]
             },
             {
