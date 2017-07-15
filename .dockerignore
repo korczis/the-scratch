@@ -1,0 +1,6 @@
+_build/
+deps/
+elm-stuff/
+node_modules/
+
+Dockerfile
