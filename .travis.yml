@@ -24,6 +24,7 @@ matrix:
       elixir: 1.4
 
 before_script:
+  - openssl s_client -connect hex.pm:443 -cipher 'DEFAULT:!ECDH'
   - mix deps.get --only test
   - nvm install 8.0 && nvm use 8.0
   - npm install -g elm
