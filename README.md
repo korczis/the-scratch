@@ -22,7 +22,7 @@
   - [x] Navigation Bar
 - [ ] Client Side Logging
 - [ ] Google Analytics
-- [ ] Google Maps
+- [x] Google Maps
 - [ ] GraphQL
 - [ ] Hot Reloading
 - [x] Phoenix Websocket
