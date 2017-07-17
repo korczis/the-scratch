@@ -9,12 +9,12 @@
 ### Core
 
 - [ ] Authentication
-  - [ ] OAuth
-    - [ ] Github
-    - [ ] Google
-    - [ ] Facebook
-    - [ ] LinkedIn
-    - [ ] Twitter
+  - [x] OAuth
+    - [x] Github
+    - [x] Google
+    - [x] Facebook
+    - [x] LinkedIn
+    - [x] Twitter
   - [ ] Sign In
   - [ ] Sign Up
 - [x] Bootstrap Integration
@@ -30,6 +30,7 @@
 - [ ] Tests
   - [ ] Server Side
   - [ ] Client Side
+- [ ] User Management
 - [x] Webpack Integration
   - [x] Development
   - [ ] Production
