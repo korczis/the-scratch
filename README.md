@@ -44,6 +44,7 @@
 ## Prerequisites
 
 - [nodejs](https://nodejs.org/en/)
+- [bower](https://bower.io/)
 - [elm](http://elm-lang.org/)
 - [elixir](https://elixir-lang.org/)
 - [phoenix](http://www.phoenixframework.org/)
@@ -53,6 +54,7 @@
 To start your Phoenix app:
 
   - Install nodejs dependencies with `npm install`
+  - Install bower dependencies with `bower install`
   - Install dependencies with `mix deps.get`
   - Start Phoenix endpoint with `mix phoenix.server`
 
