@@ -13,6 +13,14 @@ defmodule WebSpa.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/auth", WebSpa do
+    pipe_through :browser
+
+    get "/user", AuthController, :user
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+  end
+
   scope "/api/v1", as: :api_v1, alias: WebSpa.API.V1 do
     pipe_through :api
   end

@@ -12,11 +12,8 @@ import Util exposing ((=>))
 
 type alias User =
     { email : String
-    , token : AuthToken
+    , token: AuthToken
     , username : Username
-    , bio : Maybe String
-    , createdAt : String
-    , updatedAt : String
     }
 
 
@@ -30,10 +27,6 @@ decoder =
         |> required "email" Decode.string
         |> required "token" AuthToken.decoder
         |> required "username" usernameDecoder
-        |> required "bio" (Decode.nullable Decode.string)
-        |> required "createdAt" Decode.string
-        |> required "updatedAt" Decode.string
-
 
 encode : User -> Value
 encode user =
@@ -41,9 +34,6 @@ encode user =
         [ "email" => Encode.string user.email
         , "token" => AuthToken.encode user.token
         , "username" => encodeUsername user.username
-        , "bio" => EncodeExtra.maybe Encode.string user.bio
-        , "createdAt" => Encode.string user.createdAt
-        , "updatedAt" => Encode.string user.updatedAt
         ]
 
 

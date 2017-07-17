@@ -1,4 +1,8 @@
 defmodule Chat.RoomChannel do
+  @moduledoc """
+  Auth controller responsible for handling Ueberauth responses
+  """
+
   use Phoenix.Channel
   require Logger
 
@@ -35,7 +39,10 @@ defmodule Chat.RoomChannel do
   end
 
   def terminate(reason, _socket) do
-    Logger.debug"> leave #{inspect reason}"
+    Logger.debug fn ->
+        "> leave #{inspect reason}"
+    end
+
     :ok
   end
 

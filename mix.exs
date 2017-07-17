@@ -17,7 +17,21 @@ defmodule WebSpa.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {WebSpa, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext]]
+     applications: [
+        :phoenix,
+        :phoenix_pubsub,
+        :phoenix_html,
+        :cowboy,
+        :logger,
+        :gettext,
+        :oauth,
+        :ueberauth_facebook,
+        :ueberauth_google,
+        :ueberauth_github,
+        :ueberauth_identity,
+        :ueberauth_linkedin,
+        :ueberauth_twitter
+     ]]
   end
 
   # Specifies which paths to compile per environment.
@@ -34,6 +48,17 @@ defmodule WebSpa.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
+     {:cors_plug, "~> 1.3"},
+     {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
+     {:exfmt, github: "lpil/exfmt", only: [:dev, :test], runtime: false},
+     {:ueberauth, "~> 0.4"},
+     {:oauth, github: "tim/erlang-oauth"},
+     {:ueberauth_facebook, "~> 0.6"},
+     {:ueberauth_github, "~> 0.4"},
+     {:ueberauth_google, "~> 0.5"},
+     {:ueberauth_identity, "~> 0.2"},
+     {:ueberauth_linkedin , "~> 0.3 "},
+     {:ueberauth_twitter, "~> 0.2"}
      ]
   end
 end

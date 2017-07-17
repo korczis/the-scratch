@@ -14,7 +14,7 @@ charset = utf-8
 indent_size = 4
 
 [*.ex]
-indent_size = 4
+indent_size = 2
 
 [*.exs]
 indent_size = 4

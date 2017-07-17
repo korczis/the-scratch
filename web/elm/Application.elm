@@ -14,9 +14,14 @@ import Html.Events exposing (..)
 import Json.Decode as Decode exposing (Value)
 import Navigation
 import Phoenix.Socket
+import Random
+import Task
+import Window
 import Assets
 import Data.Session as Session
 import Data.User as User
+import Http
+import HttpBuilder
 import Msg
 import Model exposing (Model)
 import Navbar
@@ -37,6 +42,30 @@ socketServer =
 
 -- INIT
 
+getAuthUser : Cmd Msg.Msg
+getAuthUser =
+  let
+    url =
+      "/auth/user"
+
+    request =
+      Http.get url decodeUser
+  in
+    Http.send Msg.AuthUser request
+
+--getAuthUser : Http.Request (User.User)
+--getAuthUser =
+--    HttpBuilder.get "/auth/user"
+--    |> HttpBuilder.withExpect (Http.expectJson (User.decoder))
+--    |> HttpBuilder.toRequest
+
+decodeUser : Decode.Decoder String
+decodeUser =
+  Decode.at [] Decode.string
+
+getWindowSize : Cmd Msg.Msg
+getWindowSize =
+    Task.perform (\s -> Msg.WindowResize s) Window.size
 
 init : Value -> Navigation.Location -> ( Model, Cmd Msg.Msg )
 init value location =
@@ -56,15 +85,26 @@ init value location =
                     , pauseOnHover = False -- Prevent the default behavior to pause the transitions on mouse hover
                     }
                 , page = Page.Loaded Page.initialPage
-                , session = { user = Nothing
+                , session =
+                    {
+                    user = Nothing
                     , socket = Phoenix.Socket.init socketServer
                         |> Phoenix.Socket.withDebug
+                    }
+                , map =
+                    { latitude = 48.2082
+                    , longitude = 16.3738
+                    }
+                , window =
+                    {
+                        size = Nothing
+                    }
                 }
-                }
+
     in
 
         ( routeState
-        , Cmd.batch [ navbarCmd, routeCmd ]
+        , Cmd.batch [ navbarCmd, routeCmd, getWindowSize, getAuthUser ] -- (Task.perform identity << Task.succeed) Msg.FetchUser
         )
 
 
@@ -123,6 +163,9 @@ updatePage page msg model =
         -- errored =  pageErrored model
     in
         case ( msg, page ) of
+            ( Msg.NoOp, _ ) ->
+                ( model, Cmd.none )
+
             ( Msg.Dec, _ ) ->
                 { model | counter = model.counter - 1 } ! []
 
@@ -131,6 +174,12 @@ updatePage page msg model =
 
             ( Msg.CarouselMsg subMsg, _ ) ->
                 { model | carousel = Carousel.update subMsg model.carousel } ! []
+
+            ( Msg.AuthUser (Ok _), _) ->
+                ( model, Cmd.none )
+
+            ( Msg.AuthUser (Err _), _) ->
+                ( model, Cmd.none )
 
             ( Msg.NavbarMsg state, _ ) ->
                 let
@@ -146,6 +195,9 @@ updatePage page msg model =
 
             ( Msg.SetRoute route, _ ) ->
                 setRoute route model
+
+            ( Msg.SetLatLong lat long , _ ) ->
+                ( { model | map = { longitude = long, latitude = lat } } , Cmd.none)
 
             ( Msg.SetUser user, _ ) ->
                 let
@@ -173,6 +225,13 @@ updatePage page msg model =
                  ( { model | session = { session | socket = phxSocket } }
                  , Cmd.map Msg.PhoenixMsg phxCmd
                  )
+
+            (Msg.WindowResize size, _) ->
+                let
+                    window =
+                        model.window
+                in
+                    { model | window = { window | size = Just size } } ! []
 
 
 -- VIEW
@@ -216,7 +275,7 @@ viewPage model =
                 Page.Home.view model.carousel
 
             Page.Loaded Page.Map ->
-                Page.Map.view
+                Page.Map.view model.window
 
             Page.Loaded Page.NotFound ->
                 Page.NotFound.view
@@ -251,6 +310,7 @@ subscriptions model =
         , Sub.map Msg.SetUser sessionChange
         , Phoenix.Socket.listen model.session.socket Msg.PhoenixMsg
         , Carousel.subscriptions model.carousel Msg.CarouselMsg
+        , Window.resizes Msg.WindowResize
         ]
 
 

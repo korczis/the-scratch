@@ -23,6 +23,7 @@
 - [ ] Client Side Logging
 - [ ] Google Analytics
 - [ ] Google Maps
+- [ ] GraphQL
 - [ ] Hot Reloading
 - [x] Phoenix Websocket
 - [x] Router

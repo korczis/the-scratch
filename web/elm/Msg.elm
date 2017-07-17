@@ -2,18 +2,23 @@ module Msg exposing (..)
 
 import Bootstrap.Carousel as Carousel
 import Bootstrap.Navbar as Navbar
+import Http
 import Navigation
+import Window
 import Phoenix.Socket
 import Data.User as User
 import Route
 
-
 type Msg
-    = Inc
+    = NoOp
+    | Inc
     | Dec
+    | AuthUser (Result Http.Error String)
     | CarouselMsg Carousel.Msg
     | NavbarMsg Navbar.State
-    | UrlChange Navigation.Location
+    | PhoenixMsg (Phoenix.Socket.Msg Msg)
     | SetRoute (Maybe Route.Route)
     | SetUser (Maybe User.User)
-    | PhoenixMsg (Phoenix.Socket.Msg Msg)
+    | UrlChange Navigation.Location
+    | WindowResize Window.Size
+    | SetLatLong Float Float

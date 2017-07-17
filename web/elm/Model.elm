@@ -4,6 +4,7 @@ import Bootstrap.Carousel as Carousel
 import Bootstrap.Navbar as Navbar
 import Data.Session as Session
 import Navigation
+import Window
 import Page
 import Page.Home as Home
 
@@ -20,4 +21,11 @@ type alias Model =
     , counter : Int
     , page : Page.State
     , session : Session.Session
+    , map :
+        { latitude : Float
+        , longitude : Float
+        }
+    , window :
+        { size : Maybe Window.Size
+        }
     }

@@ -1,0 +1,6 @@
+{
+    "name": "web-spa",
+    "dependencies": {
+        "elm-google-maps": "https://github.com/korczis/elm-google-maps.git"
+    }
+}
