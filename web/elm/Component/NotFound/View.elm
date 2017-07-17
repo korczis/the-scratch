@@ -1,12 +1,7 @@
-module Page.NotFound exposing (Model, view)
+module Component.NotFound.View exposing(..)
 
 import Html exposing (..)
 import Msg
-
-
-type alias Model =
-    {}
-
 
 view : Html Msg.Msg
 view =

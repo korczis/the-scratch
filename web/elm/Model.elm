@@ -1,12 +1,14 @@
 module Model exposing (Model)
 
+-- Library Imports
 import Bootstrap.Carousel as Carousel
 import Bootstrap.Navbar as Navbar
-import Data.Session as Session
 import Navigation
 import Window
+-- Local Imports
+import Data.Session as Session
 import Page
-import Page.Home as Home
+import Component.Home.Model
 
 
 -- MODEL
@@ -17,7 +19,7 @@ type alias Model =
     , navbar :
         { state : Navbar.State
         }
-    , carousel : Home.Model
+    , carousel : Component.Home.Model.Model
     , counter : Int
     , page : Page.State
     , session : Session.Session

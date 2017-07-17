@@ -1,18 +1,12 @@
-module Page.Map exposing (Model, view)
+module Component.Map.View exposing (..)
 
-import Dict
 import Html exposing (..)
 import Html.Attributes exposing(..)
 import Html.Events exposing (..)
 import Json.Decode as Decode exposing (..)
-import Window
-import Msg
 
-
-type alias Model =
-    {
-        size : Maybe Window.Size
-    }
+import Component.Map.Model exposing (Model)
+import Msg exposing (Msg)
 
 googleMap : List (Attribute a) -> List (Html a) -> Html a
 googleMap =

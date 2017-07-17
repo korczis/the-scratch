@@ -1,5 +1,6 @@
-module Page.Home exposing (Model, view)
+module Component.Home.View exposing (..)
 
+-- Library Imports
 import Bootstrap.Carousel as Carousel
 import Bootstrap.Carousel.Slide as Slide
 import Bootstrap.Grid as Grid
@@ -7,12 +8,11 @@ import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row as Row
 import Html exposing (..)
 import Html.Attributes exposing(..)
+
+-- Local Imports
 import Assets
 import Msg
-
-
-type alias Model =
-    Carousel.State
+import Component.Home.Model exposing(Model)
 
 slideAttrs : List (Attribute msg)
 slideAttrs =

@@ -1,4 +1,4 @@
-module Navbar exposing (navbar)
+module Component.Navbar.View exposing (..)
 
 import Bootstrap.Button as Button
 import Bootstrap.Form.Input as Input
@@ -9,8 +9,8 @@ import Assets
 import Model
 import Msg
 
-navbar : Model.Model -> Html Msg.Msg
-navbar model =
+view : Model.Model -> Html Msg.Msg
+view model =
     div []
         [ Navbar.config Msg.NavbarMsg
             |> Navbar.withAnimation

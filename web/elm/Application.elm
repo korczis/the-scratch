@@ -1,5 +1,12 @@
 module Application exposing (..)
 
+-- Core Imports
+import Html exposing (..)
+import Html.Attributes exposing (..)
+import Html.Events exposing (..)
+import Json.Decode as Decode exposing (Value)
+
+-- Library Imports
 import Bootstrap.Alert as Alert
 import Bootstrap.Button as Button
 import Bootstrap.Carousel as Carousel exposing (defaultStateOptions)
@@ -8,29 +15,28 @@ import Bootstrap.Form.Input as Input
 import Bootstrap.Grid as Grid
 import Bootstrap.Navbar as Navbar
 import FontAwesome.Web as Icon
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (..)
-import Json.Decode as Decode exposing (Value)
 import Navigation
 import Phoenix.Socket
 import Random
 import Task
 import Window
+
+-- Local Imports
 import Assets
+import Component.Map.View
 import Data.Session as Session
 import Data.User as User
 import Http
 import HttpBuilder
 import Msg
 import Model exposing (Model)
-import Navbar
 import Page
-import Page.Home
-import Page.Map
-import Page.NotFound
-import Page.SignIn
-import Page.SignUp
+import Component.Home.View
+import Component.Map.Model
+import Component.Navbar.View
+import Component.NotFound.View
+import Component.SignIn.View
+import Component.SignUp.View
 import Ports
 import Route
 import Util exposing ((=>))
@@ -272,19 +278,19 @@ viewPage model =
                 div [] [ text "Blank" ]
 
             Page.Loaded Page.Home ->
-                Page.Home.view model.carousel
+                Component.Home.View.view model.carousel
 
             Page.Loaded Page.Map ->
-                Page.Map.view model.window
+                Component.Map.View.view model.window
 
             Page.Loaded Page.NotFound ->
-                Page.NotFound.view
+                Component.NotFound.View.view
 
             Page.Loaded Page.SignIn ->
-                Page.SignIn.view
+                Component.SignIn.View.view
 
             Page.Loaded Page.SignUp ->
-                Page.SignUp.view
+                Component.SignUp.View.view
 
             Page.TransitioningFrom _ ->
                 div [] []
@@ -292,7 +298,7 @@ viewPage model =
 view : Model -> Html Msg.Msg
 view model =
     div []
-        [ Navbar.navbar model -- Interactive and responsive menu
+        [ Component.Navbar.View.view model -- Interactive and responsive menu
         , viewPage model
 
         -- , mainContent model

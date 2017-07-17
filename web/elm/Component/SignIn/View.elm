@@ -1,4 +1,4 @@
-module Page.SignIn exposing (Model, view)
+module Component.SignIn.View exposing (..)
 
 import Bootstrap.Grid as Grid
 import Bootstrap.Grid.Col as Col
@@ -7,10 +7,6 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Assets
 import Msg
-
-type alias Model =
-    {}
-
 
 view : Html Msg.Msg
 view =

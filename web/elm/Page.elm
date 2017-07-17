@@ -1,7 +1,5 @@
 module Page exposing (..)
 
-import Page.Home
-
 
 type Page
     = Blank
