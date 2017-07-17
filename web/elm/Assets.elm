@@ -4,7 +4,6 @@ module Assets exposing (..)
 type AssetPath
     = AssetPath String
 
-
 net =
     AssetPath "../../priv/static/images/net.svg"
 
