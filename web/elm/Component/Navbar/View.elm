@@ -1,10 +1,13 @@
 module Component.Navbar.View exposing (..)
 
+-- Library Imports
 import Bootstrap.Button as Button
 import Bootstrap.Form.Input as Input
 import Html.Attributes exposing (..)
 import Html exposing (..)
 import Bootstrap.Navbar as Navbar
+
+-- Local Imports
 import Assets
 import Model
 import Msg

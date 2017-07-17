@@ -11,8 +11,6 @@ import Route
 
 type Msg
     = NoOp
-    | Inc
-    | Dec
     | AuthUser (Result Http.Error String)
     | CarouselMsg Carousel.Msg
     | NavbarMsg Navbar.State

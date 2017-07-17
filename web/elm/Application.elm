@@ -172,12 +172,6 @@ updatePage page msg model =
             ( Msg.NoOp, _ ) ->
                 ( model, Cmd.none )
 
-            ( Msg.Dec, _ ) ->
-                { model | counter = model.counter - 1 } ! []
-
-            ( Msg.Inc, _ ) ->
-                { model | counter = model.counter + 1 } ! []
-
             ( Msg.CarouselMsg subMsg, _ ) ->
                 { model | carousel = Carousel.update subMsg model.carousel } ! []
 
@@ -238,34 +232,6 @@ updatePage page msg model =
                         model.window
                 in
                     { model | window = { window | size = Just size } } ! []
-
-
--- VIEW
-
-
-mainContent : Model -> Html Msg.Msg
-mainContent model =
-    div
-        [ class "container" ]
-        [ h1
-            []
-            [ img [ src "/images/phoenix.png" ] []
-            , text "Hot loading example!"
-            ]
-        , button
-            [ class "btn btn-primary"
-            , onClick Msg.Dec
-            ]
-            [ text "- 1" ]
-        , span
-            []
-            [ text <| toString model.counter ]
-        , button
-            [ class "btn btn-primary"
-            , onClick Msg.Inc
-            ]
-            [ text "+ 1" ]
-        ]
 
 
 viewPage : Model.Model -> Html Msg.Msg
