@@ -4,6 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing(..)
 import Html.Events exposing (..)
 import Json.Decode as Decode exposing (..)
+import Window
 
 import Component.Map.Model exposing (Model)
 import Msg exposing (Msg)
@@ -12,10 +13,11 @@ googleMap : List (Attribute a) -> List (Html a) -> Html a
 googleMap =
     Html.node "google-map"
 
-view : Model -> Html Msg.Msg
-view model =
+view : Model -> Maybe Window.Size -> Html Msg.Msg
+view model windowSize =
     let
-        height = "600px"
+        size = Maybe.withDefault ( Window.Size 0 0 ) windowSize
+        height = toString (size.height - 56) ++ "px"
 
     in
         div [style [("background-color", "red"), ("width", "100%"), ("height", height)]] [
@@ -25,6 +27,7 @@ view model =
                 , attribute "drag-events" "true"
                 , attribute "map-type" "satellite"
                 , attribute "zoom" "3"
+                -- , attribute "api-key" "AIzaSyC0KVspAlR2NqQIU-1k0zyNlmRURbbgPr0"
                 , recordLatLongOnDrag
                 ] [ div [ ] [ text "this is test" ] ]
         ]

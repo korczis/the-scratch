@@ -234,7 +234,7 @@ viewPage model =
                 Component.Home.View.view model.carousel
 
             Component.Page.Component.Loaded Component.Page.Component.Map ->
-                Component.Map.View.view model.window
+                Component.Map.View.view model.window model.window.size
 
             Component.Page.Component.Loaded Component.Page.Component.NotFound ->
                 Component.NotFound.View.view
