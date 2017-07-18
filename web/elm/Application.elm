@@ -48,23 +48,6 @@ socketServer =
 
 -- INIT
 
---getAuthUser : Cmd Msg.Msg
---getAuthUser =
---  let
---    url =
---      "/auth/user"
---
---    request =
---      Http.get url decodeUser
---  in
---    Http.send Msg.AuthUser request
-
---getAuthUser : Http.Request (User.User)
---getAuthUser =
---    HttpBuilder.get "/auth/user"
---    |> HttpBuilder.withExpect (Http.expectJson (User.decoder))
---    |> HttpBuilder.toRequest
-
 fetchAuthUser : Http.Request User.User
 fetchAuthUser =
   Http.get "/auth/user" User.decoder
