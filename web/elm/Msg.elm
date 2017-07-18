@@ -11,7 +11,7 @@ import Route
 
 type Msg
     = NoOp
-    | AuthUser (Result Http.Error String)
+    | AuthUser (Result Http.Error User.User)
     | CarouselMsg Carousel.Msg
     | NavbarMsg Navbar.State
     | PhoenixMsg (Phoenix.Socket.Msg Msg)

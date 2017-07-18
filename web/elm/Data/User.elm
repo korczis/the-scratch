@@ -1,6 +1,5 @@
 module Data.User exposing (User, Username, decoder, encode, usernameDecoder, usernameParser, usernameToHtml, usernameToString)
 
-import Data.AuthToken as AuthToken exposing (AuthToken)
 import Html exposing (Html)
 import Json.Decode as Decode exposing (Decoder)
 import Json.Decode.Pipeline as Pipeline exposing (decode, required)
@@ -12,7 +11,6 @@ import Util exposing ((=>))
 
 type alias User =
     { email : String
-    , token: AuthToken
     , username : Username
     }
 
@@ -25,14 +23,12 @@ decoder : Decoder User
 decoder =
     decode User
         |> required "email" Decode.string
-        |> required "token" AuthToken.decoder
         |> required "username" usernameDecoder
 
 encode : User -> Value
 encode user =
     Encode.object
         [ "email" => Encode.string user.email
-        , "token" => AuthToken.encode user.token
         , "username" => encodeUsername user.username
         ]
 

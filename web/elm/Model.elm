@@ -5,14 +5,11 @@ import Bootstrap.Carousel as Carousel
 import Bootstrap.Navbar as Navbar
 import Navigation
 import Window
+
 -- Local Imports
 import Data.Session as Session
-import Page
+import Component.Page.Component
 import Component.Home.Model
-
-
--- MODEL
-
 
 type alias Model =
     { history : List Navigation.Location
@@ -21,7 +18,7 @@ type alias Model =
         }
     , carousel : Component.Home.Model.Model
     , counter : Int
-    , page : Page.State
+    , page : Component.Page.Component.State
     , session : Session.Session
     , map :
         { latitude : Float

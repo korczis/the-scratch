@@ -46,6 +46,6 @@ defmodule WebSpa.AuthController do
 
   def user(conn, _params) do
     # json conn, nil
-    json(conn, %{email: "korczis@gmail.com", firstname: "Tomas", lastname: "Korcak"})
+    json(conn, %{email: "korczis@gmail.com", username: "korczis" })
   end
 end

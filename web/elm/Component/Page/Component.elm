@@ -1,5 +1,4 @@
-module Page exposing (..)
-
+module Component.Page.Component exposing (..)
 
 type Page
     = Blank

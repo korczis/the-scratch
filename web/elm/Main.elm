@@ -11,7 +11,6 @@ import Route
 
 
 main =
-    -- TimeTravel.program Msg.UrlChange
     TimeTravel.programWithFlags (Route.fromLocation >> Msg.SetRoute)
         { init = init
         , view = view

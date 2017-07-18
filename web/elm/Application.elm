@@ -23,16 +23,16 @@ import Window
 
 -- Local Imports
 import Assets
-import Component.Map.View
 import Data.Session as Session
 import Data.User as User
 import Http
 import HttpBuilder
 import Msg
 import Model exposing (Model)
-import Page
+import Component.Page.Component
 import Component.Home.View
 import Component.Map.Model
+import Component.Map.View
 import Component.Navbar.View
 import Component.NotFound.View
 import Component.SignIn.View
@@ -48,16 +48,16 @@ socketServer =
 
 -- INIT
 
-getAuthUser : Cmd Msg.Msg
-getAuthUser =
-  let
-    url =
-      "/auth/user"
-
-    request =
-      Http.get url decodeUser
-  in
-    Http.send Msg.AuthUser request
+--getAuthUser : Cmd Msg.Msg
+--getAuthUser =
+--  let
+--    url =
+--      "/auth/user"
+--
+--    request =
+--      Http.get url decodeUser
+--  in
+--    Http.send Msg.AuthUser request
 
 --getAuthUser : Http.Request (User.User)
 --getAuthUser =
@@ -65,9 +65,13 @@ getAuthUser =
 --    |> HttpBuilder.withExpect (Http.expectJson (User.decoder))
 --    |> HttpBuilder.toRequest
 
-decodeUser : Decode.Decoder String
-decodeUser =
-  Decode.at [] Decode.string
+fetchAuthUser : Http.Request User.User
+fetchAuthUser =
+  Http.get "/auth/user" User.decoder
+
+getAuthUser : Cmd Msg.Msg
+getAuthUser =
+  Http.send Msg.AuthUser fetchAuthUser
 
 getWindowSize : Cmd Msg.Msg
 getWindowSize =
@@ -90,7 +94,7 @@ init value location =
                     | interval = Just 5000 -- Change slide every 5 seconds
                     , pauseOnHover = False -- Prevent the default behavior to pause the transitions on mouse hover
                     }
-                , page = Page.Loaded Page.initialPage
+                , page = Component.Page.Component.Loaded Component.Page.Component.initialPage
                 , session =
                     {
                     user = Nothing
@@ -128,32 +132,32 @@ setRoute maybeRoute model =
                 ( newModel, newCmd ) =
                     subUpdate subMsg subModel
             in
-            ( { model | page = Page.Loaded (toModel newModel) }, Cmd.map toMsg newCmd )
+            ( { model | page = Component.Page.Component.Loaded (toModel newModel) }, Cmd.map toMsg newCmd )
 
         -- errored = pageErrored model
     in
    case maybeRoute of
         Nothing ->
-            { model | page = Page.Loaded Page.NotFound } => Cmd.none
+            { model | page = Component.Page.Component.Loaded Component.Page.Component.NotFound } => Cmd.none
 
         Just Route.Home ->
-            { model | page = Page.Loaded Page.Home } => Cmd.none
+            { model | page = Component.Page.Component.Loaded Component.Page.Component.Home } => Cmd.none
 
         Just Route.Map ->
-            { model | page = Page.Loaded Page.Map } => Cmd.none
+            { model | page = Component.Page.Component.Loaded Component.Page.Component.Map } => Cmd.none
 
         Just Route.SignIn ->
-            { model | page = Page.Loaded Page.SignIn } => Cmd.none
+            { model | page = Component.Page.Component.Loaded Component.Page.Component.SignIn } => Cmd.none
 
         Just Route.SignUp ->
-            { model | page = Page.Loaded Page.SignUp } => Cmd.none
+            { model | page = Component.Page.Component.Loaded Component.Page.Component.SignUp } => Cmd.none
 
 update : Msg.Msg -> Model -> ( Model, Cmd Msg.Msg )
 update msg model =
-    updatePage (Page.getPage model.page) msg model
+    updatePage (Component.Page.Component.getPage model.page) msg model
 
 
-updatePage : Page.Page -> Msg.Msg -> Model -> ( Model, Cmd Msg.Msg )
+updatePage : Component.Page.Component.Page -> Msg.Msg -> Model -> ( Model, Cmd Msg.Msg )
 updatePage page msg model =
     let
         session =
@@ -164,7 +168,7 @@ updatePage page msg model =
                 ( newModel, newCmd ) =
                     subUpdate subMsg subModel
             in
-                ( { model | page = Page.Loaded (toModel newModel) }, Cmd.map toMsg newCmd )
+                ( { model | page = Component.Page.Component.Loaded (toModel newModel) }, Cmd.map toMsg newCmd )
 
         -- errored =  pageErrored model
     in
@@ -175,8 +179,8 @@ updatePage page msg model =
             ( Msg.CarouselMsg subMsg, _ ) ->
                 { model | carousel = Carousel.update subMsg model.carousel } ! []
 
-            ( Msg.AuthUser (Ok _), _) ->
-                ( model, Cmd.none )
+            ( Msg.AuthUser (Ok user), _) ->
+                { model | session = { session | user = Just user } } => Cmd.none
 
             ( Msg.AuthUser (Err _), _) ->
                 ( model, Cmd.none )
@@ -240,25 +244,25 @@ viewPage model =
         page = model.page
     in
         case page of
-            Page.Loaded Page.Blank ->
+            Component.Page.Component.Loaded Component.Page.Component.Blank ->
                 div [] [ text "Blank" ]
 
-            Page.Loaded Page.Home ->
+            Component.Page.Component.Loaded Component.Page.Component.Home ->
                 Component.Home.View.view model.carousel
 
-            Page.Loaded Page.Map ->
+            Component.Page.Component.Loaded Component.Page.Component.Map ->
                 Component.Map.View.view model.window
 
-            Page.Loaded Page.NotFound ->
+            Component.Page.Component.Loaded Component.Page.Component.NotFound ->
                 Component.NotFound.View.view
 
-            Page.Loaded Page.SignIn ->
+            Component.Page.Component.Loaded Component.Page.Component.SignIn ->
                 Component.SignIn.View.view
 
-            Page.Loaded Page.SignUp ->
+            Component.Page.Component.Loaded Component.Page.Component.SignUp ->
                 Component.SignUp.View.view
 
-            Page.TransitioningFrom _ ->
+            Component.Page.Component.TransitioningFrom _ ->
                 div [] []
 
 view : Model -> Html Msg.Msg
