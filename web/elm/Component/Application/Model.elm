@@ -1,4 +1,4 @@
-module Model exposing (Model)
+module Component.Application.Model exposing (Model)
 
 -- Library Imports
 import Bootstrap.Carousel as Carousel
@@ -18,7 +18,6 @@ type alias Model =
         { state : Navbar.State
         }
     , carousel : Component.Home.Model.Model
-    , counter : Int
     , page : Component.Page.Component.State
     , session : Session.Session
     , map : Component.Map.Model.Model
