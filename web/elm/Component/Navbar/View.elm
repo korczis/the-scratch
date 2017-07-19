@@ -9,10 +9,10 @@ import Bootstrap.Navbar as Navbar
 
 -- Local Imports
 import Assets
-import Model
+import Component.Application.Model exposing(Model)
 import Msg
 
-view : Model.Model -> Html Msg.Msg
+view : Model -> Html Msg.Msg
 view model =
     div []
         [ Navbar.config Msg.NavbarMsg

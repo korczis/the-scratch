@@ -1,14 +1,15 @@
 module Main exposing (..)
 
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (..)
-import Navigation
+-- Library Imports
 import TimeTravel.Navigation as TimeTravel
-import Application exposing (init, update, view, subscriptions)
+
+-- Local Imports
+import Component.Application.Init exposing(init)
+import Component.Application.Update exposing(update)
+import Component.Application.View exposing(view)
+import Component.Application.Subscription exposing(subscriptions)
 import Msg
 import Route
-
 
 main =
     TimeTravel.programWithFlags (Route.fromLocation >> Msg.SetRoute)

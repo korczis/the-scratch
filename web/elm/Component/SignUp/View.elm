@@ -1,13 +1,9 @@
-module Component.SignUp.View exposing (Model, view)
+module Component.SignUp.View exposing (view)
 
 import Html exposing (..)
 import Msg
 
 import Component.SignIn.View
-
-type alias Model =
-    {}
-
 
 view : Html Msg.Msg
 view =

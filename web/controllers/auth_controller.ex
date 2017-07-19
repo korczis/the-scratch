@@ -46,6 +46,7 @@ defmodule WebSpa.AuthController do
 
   def user(conn, _params) do
     # json conn, nil
+    :timer.sleep(5000)
     json(conn, %{email: "korczis@gmail.com", username: "korczis" })
   end
 end
