@@ -9,6 +9,8 @@ import Phoenix.Socket
 import Data.User as User
 import Route
 
+import Component.Map.Msg
+
 type Msg
     = NoOp
     | AuthUser (Result Http.Error User.User)
@@ -19,4 +21,5 @@ type Msg
     | SetUser (Maybe User.User)
     | UrlChange Navigation.Location
     | WindowResize Window.Size
-    | SetLatLong Float Float
+    | SetLatLongZoom Float Float Int
+    -- | MapMsg Component.Map.Msg.Msg

@@ -10,6 +10,7 @@ import Window
 import Data.Session as Session
 import Component.Page.Component
 import Component.Home.Model
+import Component.Map.Model
 
 type alias Model =
     { history : List Navigation.Location
@@ -20,10 +21,7 @@ type alias Model =
     , counter : Int
     , page : Component.Page.Component.State
     , session : Session.Session
-    , map :
-        { latitude : Float
-        , longitude : Float
-        }
+    , map : Component.Map.Model.Model
     , window :
         { size : Maybe Window.Size
         }

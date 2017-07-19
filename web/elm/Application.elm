@@ -87,6 +87,7 @@ init value location =
                 , map =
                     { latitude = 48.2082
                     , longitude = 16.3738
+                    , zoom = 5
                     }
                 , window =
                     {
@@ -183,8 +184,8 @@ updatePage page msg model =
             ( Msg.SetRoute route, _ ) ->
                 setRoute route model
 
-            ( Msg.SetLatLong lat long , _ ) ->
-                ( { model | map = { longitude = long, latitude = lat } } , Cmd.none)
+            ( Msg.SetLatLongZoom lat long zoom , _ ) ->
+                ( { model | map = { longitude = long, latitude = lat, zoom = zoom } } , Cmd.none)
 
             ( Msg.SetUser user, _ ) ->
                 let
@@ -234,7 +235,7 @@ viewPage model =
                 Component.Home.View.view model.carousel
 
             Component.Page.Component.Loaded Component.Page.Component.Map ->
-                Component.Map.View.view model.window model.window.size
+                Component.Map.View.view model.map model.window.size
 
             Component.Page.Component.Loaded Component.Page.Component.NotFound ->
                 Component.NotFound.View.view

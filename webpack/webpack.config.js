@@ -98,7 +98,7 @@ module.exports = {
             Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
             Util: "exports-loader?Util!bootstrap/js/dist/util",
         })
-        // new webpack.optimize.UglifyJsPlugin({
+        // , new webpack.optimize.UglifyJsPlugin({
         //     minimize: true,
         //     compress: true
         // })
