@@ -46,6 +46,7 @@
 
 ### Fancy
 
+- [ ] [Stats.js](https://github.com/mrdoob/stats.js/) - JavaScript Performance Monitor                                                       
 - [ ] Url Shortener
 
 ## Prerequisites
