@@ -7,9 +7,9 @@ import Json.Encode as Encode exposing (..)
 import Json.Decode as Decode exposing (..)
 import Window
 
+import Component.Application.Msg as Msg
 import Component.Map.Model exposing (Model)
 import Component.Map.Msg
-import Msg exposing (Msg)
 
 googleMap : List (Attribute a) -> List (Html a) -> Html a
 googleMap =

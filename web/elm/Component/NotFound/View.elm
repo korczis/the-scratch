@@ -1,7 +1,10 @@
 module Component.NotFound.View exposing(..)
 
+-- Core Imports
 import Html exposing (..)
-import Msg
+
+-- Local Imports
+import Component.Application.Msg as Msg
 
 view : Html Msg.Msg
 view =

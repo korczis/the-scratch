@@ -11,7 +11,7 @@ import Html.Attributes exposing(..)
 
 -- Local Imports
 import Assets
-import Msg
+import Component.Application.Msg as Msg
 import Component.Home.Model exposing(Model)
 
 slideAttrs : List (Attribute msg)

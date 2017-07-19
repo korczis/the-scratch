@@ -6,9 +6,9 @@ import Phoenix.Socket
 
 -- Local Imports
 import Component.Application.Model exposing(Model)
+import Component.Application.Msg as Msg
 import Component.Application.Init exposing(setRoute)
 import Component.Page.Component
-import Msg
 import Route
 import Util exposing ((=>))
 

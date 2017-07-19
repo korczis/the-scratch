@@ -1,8 +1,6 @@
 module Component.Application.Model exposing (Model)
 
 -- Library Imports
-import Bootstrap.Carousel as Carousel
-import Bootstrap.Navbar as Navbar
 import Navigation
 import Window
 
@@ -11,12 +9,11 @@ import Data.Session as Session
 import Component.Page.Component
 import Component.Home.Model
 import Component.Map.Model
+import Component.Navbar.Model
 
 type alias Model =
     { history : List Navigation.Location
-    , navbar :
-        { state : Navbar.State
-        }
+    , navbar : Component.Navbar.Model.Model
     , carousel : Component.Home.Model.Model
     , page : Component.Page.Component.State
     , session : Session.Session

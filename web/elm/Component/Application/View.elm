@@ -5,6 +5,7 @@ import Html exposing(..)
 
 -- Local Imports
 import Component.Application.Model exposing(Model)
+import Component.Application.Msg as Msg
 import Component.Home.View
 import Component.Map.View
 import Component.Navbar.View
@@ -13,7 +14,6 @@ import Component.Page.Component
 import Component.SignIn.View
 import Component.SignUp.View
 
-import Msg
 
 viewPage : Model -> Html Msg.Msg
 viewPage model =

@@ -10,7 +10,7 @@ import Bootstrap.Navbar as Navbar
 -- Local Imports
 import Assets
 import Component.Application.Model exposing(Model)
-import Msg
+import Component.Application.Msg as Msg
 
 view : Model -> Html Msg.Msg
 view model =

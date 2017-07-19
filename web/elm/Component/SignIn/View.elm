@@ -1,12 +1,17 @@
 module Component.SignIn.View exposing (..)
 
+-- Core Imports
+import Html exposing (..)
+import Html.Attributes exposing (..)
+
+-- Library Imports
 import Bootstrap.Grid as Grid
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row as Row
-import Html exposing (..)
-import Html.Attributes exposing (..)
+
+-- Local Imports
 import Assets
-import Msg
+import Component.Application.Msg as Msg
 
 view : Html Msg.Msg
 view =

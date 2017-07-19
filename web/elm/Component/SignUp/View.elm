@@ -1,8 +1,10 @@
 module Component.SignUp.View exposing (view)
 
+-- Core Imports
 import Html exposing (..)
-import Msg
 
+-- Library Imports
+import Component.Application.Msg as Msg
 import Component.SignIn.View
 
 view : Html Msg.Msg

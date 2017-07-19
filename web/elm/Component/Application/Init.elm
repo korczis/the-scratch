@@ -14,9 +14,10 @@ import Window
 
 -- Local Imports
 import Component.Application.Model exposing(Model)
-import Component.Page.Component
+import Component.Application.Msg as Msg
+import Component.Page.Component as Page
 import Data.User as User
-import Msg
+
 import Route
 import Util exposing ((=>))
 
@@ -48,25 +49,25 @@ setRoute maybeRoute model =
                 ( newModel, newCmd ) =
                     subUpdate subMsg subModel
             in
-            ( { model | page = Component.Page.Component.Loaded (toModel newModel) }, Cmd.map toMsg newCmd )
+            ( { model | page = Page.Loaded (toModel newModel) }, Cmd.map toMsg newCmd )
 
         -- errored = pageErrored model
     in
    case maybeRoute of
         Nothing ->
-            { model | page = Component.Page.Component.Loaded Component.Page.Component.NotFound } => Cmd.none
+            { model | page = Page.Loaded Page.NotFound } => Cmd.none
 
         Just Route.Home ->
-            { model | page = Component.Page.Component.Loaded Component.Page.Component.Home } => Cmd.none
+            { model | page = Page.Loaded Page.Home } => Cmd.none
 
         Just Route.Map ->
-            { model | page = Component.Page.Component.Loaded Component.Page.Component.Map } => Cmd.none
+            { model | page = Page.Loaded Page.Map } => Cmd.none
 
         Just Route.SignIn ->
-            { model | page = Component.Page.Component.Loaded Component.Page.Component.SignIn } => Cmd.none
+            { model | page = Page.Loaded Page.SignIn } => Cmd.none
 
         Just Route.SignUp ->
-            { model | page = Component.Page.Component.Loaded Component.Page.Component.SignUp } => Cmd.none
+            { model | page = Page.Loaded Page.SignUp } => Cmd.none
 
 init : Value -> Navigation.Location -> ( Model, Cmd Msg.Msg )
 init value location =
@@ -84,7 +85,7 @@ init value location =
                     | interval = Just 5000 -- Change slide every 5 seconds
                     , pauseOnHover = False -- Prevent the default behavior to pause the transitions on mouse hover
                     }
-                , page = Component.Page.Component.Loaded Component.Page.Component.initialPage
+                , page = Page.Loaded Page.initialPage
                 , session =
                     {
                     user = Nothing
@@ -105,5 +106,10 @@ init value location =
     in
 
         ( routeState
-        , Cmd.batch [ navbarCmd, routeCmd, getWindowSize, getAuthUser ] -- (Task.perform identity << Task.succeed) Msg.FetchUser
+        , Cmd.batch
+            [ navbarCmd
+            , routeCmd
+            , getWindowSize
+            , getAuthUser
+           ]
         )

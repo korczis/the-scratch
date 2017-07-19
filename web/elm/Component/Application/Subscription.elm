@@ -9,8 +9,8 @@ import Window
 
 -- Local Imports
 import Component.Application.Model exposing(Model)
+import Component.Application.Msg as Msg
 import Data.User as User
-import Msg
 import Ports
 
 sessionChange : Sub (Maybe User.User)
