@@ -13,30 +13,16 @@ import Phoenix.Socket
 import Window
 
 -- Local Imports
+import Component.Application.Helper exposing(socketServer)
 import Component.Application.Model exposing(Model)
 import Component.Application.Msg as Msg
+import Component.Auth.Helper exposing(getAuthUser)
 import Component.Page.Component as Page
+import Component.Window.Helper exposing(getWindowSize)
 import Data.User as User
 
 import Route
 import Util exposing ((=>))
-
-socketServer : String
-socketServer =
-    "ws://localhost:4000/socket/websocket"
-
-
-fetchAuthUser : Http.Request User.User
-fetchAuthUser =
-  Http.get "/auth/user" User.decoder
-
-getAuthUser : Cmd Msg.Msg
-getAuthUser =
-  Http.send Msg.AuthUser fetchAuthUser
-
-getWindowSize : Cmd Msg.Msg
-getWindowSize =
-    Task.perform (\s -> Msg.WindowResize s) Window.size
 
 setRoute : Maybe Route.Route -> Model -> ( Model, Cmd Msg.Msg )
 setRoute maybeRoute model =
@@ -50,8 +36,6 @@ setRoute maybeRoute model =
                     subUpdate subMsg subModel
             in
             ( { model | page = Page.Loaded (toModel newModel) }, Cmd.map toMsg newCmd )
-
-        -- errored = pageErrored model
     in
    case maybeRoute of
         Nothing ->

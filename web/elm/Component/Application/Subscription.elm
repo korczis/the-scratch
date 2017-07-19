@@ -17,7 +17,7 @@ sessionChange : Sub (Maybe User.User)
 sessionChange =
     Ports.onSessionChange (Decode.decodeValue User.decoder >> Result.toMaybe)
 
-
+-- TODO: Compose from Component/*/Subscription.elm#subscription
 subscriptions : Model -> Sub Msg.Msg
 subscriptions model =
     Sub.batch

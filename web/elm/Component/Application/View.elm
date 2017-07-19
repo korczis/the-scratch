@@ -10,7 +10,7 @@ import Component.Home.View
 import Component.Map.View
 import Component.Navbar.View
 import Component.NotFound.View
-import Component.Page.Component
+import Component.Page.Component as Page
 import Component.SignIn.View
 import Component.SignUp.View
 
@@ -21,25 +21,25 @@ viewPage model =
         page = model.page
     in
         case page of
-            Component.Page.Component.Loaded Component.Page.Component.Blank ->
+            Page.Loaded Page.Blank ->
                 div [] [ text "Blank" ]
 
-            Component.Page.Component.Loaded Component.Page.Component.Home ->
+            Page.Loaded Page.Home ->
                 Component.Home.View.view model.carousel
 
-            Component.Page.Component.Loaded Component.Page.Component.Map ->
+            Page.Loaded Page.Map ->
                 Component.Map.View.view model.map model.window.size
 
-            Component.Page.Component.Loaded Component.Page.Component.NotFound ->
+            Page.Loaded Page.NotFound ->
                 Component.NotFound.View.view
 
-            Component.Page.Component.Loaded Component.Page.Component.SignIn ->
+            Page.Loaded Page.SignIn ->
                 Component.SignIn.View.view
 
-            Component.Page.Component.Loaded Component.Page.Component.SignUp ->
+            Page.Loaded Page.SignUp ->
                 Component.SignUp.View.view
 
-            Component.Page.Component.TransitioningFrom _ ->
+            Page.TransitioningFrom _ ->
                 div [] []
 
 view : Model -> Html Msg.Msg

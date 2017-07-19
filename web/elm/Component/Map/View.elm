@@ -9,7 +9,6 @@ import Window
 
 import Component.Application.Msg as Msg
 import Component.Map.Model exposing (Model)
-import Component.Map.Msg
 
 googleMap : List (Attribute a) -> List (Html a) -> Html a
 googleMap =
@@ -19,6 +18,7 @@ view : Model -> Maybe Window.Size -> Html Msg.Msg
 view model windowSize =
     let
         size = Maybe.withDefault ( Window.Size 0 0 ) windowSize
+        -- TODO: Replace 56px on following line with runtime value
         height = toString (size.height - 56) ++ "px"
 
     in
@@ -33,31 +33,29 @@ view model windowSize =
                 , attribute "map-type" "satellite"
                 -- , attribute "api-key" "AIzaSyC0KVspAlR2NqQIU-1k0zyNlmRURbbgPr0"
                 , recordIdle
-                -- , recordLatLongOnDrag
-                -- , recordZoomChange
+                , recordLatLongOnDrag
+                , recordZoomChange
                 ] [ ]
         ]
 
+updateMap : Decoder Msg.Msg
+updateMap =
+    map3 Msg.SetLatLongZoom
+        (at [ "target", "latitude" ] Decode.float)
+        (at [ "target", "longitude" ] Decode.float)
+        (at [ "target", "zoom" ] Decode.int)
+
 recordIdle : Attribute Msg.Msg
 recordIdle =
-    on "google-map-idle" <|
-        map3 Msg.SetLatLongZoom
-            (at [ "target", "latitude" ] Decode.float)
-            (at [ "target", "longitude" ] Decode.float)
-            (at [ "target", "zoom" ] Decode.int)
+    on "google-map-idle"
+        <| updateMap
 
 recordLatLongOnDrag : Attribute Msg.Msg
 recordLatLongOnDrag =
-    on "google-map-drag" <|
-        map3 Msg.SetLatLongZoom
-            (at [ "target", "latitude" ] Decode.float)
-            (at [ "target", "longitude" ] Decode.float)
-            (at [ "target", "zoom" ] Decode.int)
+    on "google-map-drag"
+        <| updateMap
 
 recordZoomChange : Attribute Msg.Msg
 recordZoomChange =
-    on "google-map-drag" <|
-        map3 Msg.SetLatLongZoom
-            (at [ "target", "latitude" ] Decode.float)
-            (at [ "target", "longitude" ] Decode.float)
-            (at [ "target", "zoom" ] Decode.int)
+    on "google-map-drag"
+        <| updateMap

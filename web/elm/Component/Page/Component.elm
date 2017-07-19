@@ -3,7 +3,7 @@ module Component.Page.Component exposing (..)
 type Page
     = Blank
     | NotFound
-    | Home -- Page.Home.Model
+    | Home
     | Map
     | SignIn
     | SignUp

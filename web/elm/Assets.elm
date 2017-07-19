@@ -1,6 +1,6 @@
 module Assets exposing (..)
 
-
+-- TODO: Generate automatically
 type AssetPath
     = AssetPath String
 
