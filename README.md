@@ -25,6 +25,9 @@
 - [x] Google Maps
 - [ ] GraphQL
 - [ ] Hot Reloading
+- [ ] Persistence (via Ecto)
+  - [ ] PostgreSQL
+  - [ ] Couchbase
 - [x] Phoenix Websocket
 - [x] Router
 - [ ] Tests
@@ -34,12 +37,16 @@
 - [x] Webpack Integration
   - [x] Development
   - [ ] Production
-  
+
 ### Deployment
 
 - [ ] Dockerfile
 - [ ] Kubernetes
 - [ ] Systemd unit
+
+### Fancy
+
+- [ ] Url Shortener
 
 ## Prerequisites
 
