@@ -1,4 +1,8 @@
 defmodule WebSpa do
+  @moduledoc """
+  Root WebSpa module
+  """
+
   use Application
 
   alias WebSpa.Endpoint, as: Endpoint
@@ -12,6 +16,7 @@ defmodule WebSpa do
     children = [
       # Start the endpoint when the application starts
       supervisor(WebSpa.Endpoint, []),
+      supervisor(WebSpa.Repo, []),
       # Start your own worker by calling: WebSpa.Worker.start_link(arg1, arg2, arg3)
       # worker(WebSpa.Worker, [arg1, arg2, arg3]),
     ]

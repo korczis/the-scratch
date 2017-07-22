@@ -9,6 +9,7 @@ import UrlParser as Url exposing ((</>), Parser, oneOf, parseHash, s, string)
 type Route
     = Home
     | Map
+    | Profile
     | SignIn
     | SignUp
 
@@ -18,6 +19,7 @@ route =
     oneOf
         [ Url.map Home (s "")
         , Url.map Map (s "map")
+        , Url.map Profile (s "profile")
         , Url.map SignIn (s "auth" </> s "signin" )
         , Url.map SignUp (s "auth" </> s "signup" )
         ]
@@ -33,6 +35,9 @@ routeToString page =
 
                 Map ->
                     [ "map" ]
+
+                Profile ->
+                    [ "profile" ]
 
                 SignIn ->
                     [ "auth", "signin" ]

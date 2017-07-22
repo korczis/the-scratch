@@ -9,12 +9,21 @@ defmodule WebSpa.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :browser_session do
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
   end
 
   scope "/auth", WebSpa do
-    pipe_through :browser
+    pipe_through [:browser, :browser_session]
 
     get "/user", AuthController, :user
     get "/:provider", AuthController, :request
@@ -26,7 +35,7 @@ defmodule WebSpa.Router do
   end
 
   scope "/", WebSpa do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :browser_session] # Use the default browser stack
 
     get "/*path", PageController, :index
   end

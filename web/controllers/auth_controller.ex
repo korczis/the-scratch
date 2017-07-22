@@ -2,51 +2,57 @@ defmodule WebSpa.AuthController do
   @moduledoc """
   Auth controller responsible for handling Ueberauth responses
   """
+
   require Logger
+  require Ecto.Query
+
+  alias Ecto.Query
+  alias WebSpa.Repo
+  alias Guardian.Plug
 
   use WebSpa.Web, :controller
   plug Ueberauth
-#
-#  alias Ueberauth.Strategy.Helpers
-#
-#  def request(conn, _params) do
-#    render(conn, "request.html", callback_url: Helpers.callback_url(conn))
-#  end
-#
-#  def delete(conn, _params) do
-#    conn
-#    |> put_flash(:info, "You have been logged out!")
-#    |> configure_session(drop: true)
-#    |> redirect(to: "/")
-#  end
-#
-#  def callback(%{assigns: %{ueberauth_failure: _fails}} = conn, _params) do
-#    conn
-#    |> put_flash(:error, "Failed to authenticate.")
-#    |> redirect(to: "/")
-#  end
-#
-  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-    Logger.debug inspect(auth)
+
+  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, params) do
+    provider = Map.fetch!(params, "provider")
+    user = auth.extra.raw_info.user
+    email = Map.fetch!(user, "email")
+
+    query = Query.from u in User,
+      where: u.provider == ^provider and u.email == ^email
+
+    user = case Repo.one(query) do
+      nil -> {
+        case Repo.insert %User{email: email, provider: provider, profile: user} do
+          {:ok, u} -> u
+          _ -> nil
+        end
+      }
+      u -> u
+    end
+
+    { :ok, jwt, _ } = Guardian.encode_and_sign(user)
+    Logger.debug "JWT: #{jwt}"
 
     conn
+    |> Plug.sign_in(user, jwt)
+    |> put_resp_header("authorization", "Bearer #{jwt}")
     |> redirect(to: "/#/")
-#    case UserFromAuth.find_or_create(auth) do
-#      {:ok, user} ->
-#        conn
-#        |> put_flash(:info, "Successfully authenticated.")
-#        |> put_session(:current_user, user)
-#        |> redirect(to: "/")
-#      {:error, reason} ->
-#        conn
-#        |> put_flash(:error, reason)
-#        |> redirect(to: "/")
-#    end
   end
 
-  def user(conn, _params) do
-    # json conn, nil
-    :timer.sleep(5000)
-    json(conn, %{email: "korczis@gmail.com", username: "korczis" })
+  def user(conn, params) do
+    user = Guardian.Plug.current_resource(conn)
+    case user do
+      %User{email: email} -> json(conn, %{email: "korczis@gmail.com"})
+      _ -> json(conn, nil)
+    end
+
+
   end
+
+  def sign_out(conn, _params) do
+      Guardian.Plug.sign_out(conn)
+      |> clear_session
+      |> redirect(to: "/")
+    end
 end

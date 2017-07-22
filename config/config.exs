@@ -22,6 +22,27 @@ config :logger, :console,
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
 
+config :guardian, Guardian,
+  allowed_algos: ["HS512"], # optional
+  verify_module: Guardian.JWT,  # optional
+  issuer: "WebSpa",
+  ttl: { 30, :days },
+  allowed_drift: 2000,
+  verify_issuer: true, # optional
+  secret_key: "DhUiKQw5XpO5snL23b1LW6zo521PmHnohU7i3i8mpyvPAQe/Pj4tVQhaCGwGFnCZ",
+  serializer: WebSpa.GuardianSerializer
+
+# See http://geoffreylessel.com/2016/connecting-to-multiple-databases-with-ecto/
+# See http://ricostacruz.com/cheatsheets/phoenix-migrations.html
+config :web_spa, WebSpa.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "web_spa",
+  username: "postgres",
+  password: "mysecretpassword",
+  hostname: "localhost"
+
+config :web_spa, ecto_repos: [WebSpa.Repo]
+
 config :ueberauth, Ueberauth,
   providers: [
     facebook: { Ueberauth.Strategy.Facebook, [profile_fields: "name,email,first_name,last_name"] },

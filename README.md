@@ -2,7 +2,7 @@
 
 ## Status
 
-[![Build Status](https://travis-ci.org/korczis/web-spa.svg?branch=master)](https://travis-ci.org/korczis/web-spa)
+[![Build Status](https://travis-ci.org/korczis/the-scratch.svg?branch=master)](https://travis-ci.org/korczis/the-scratch)
 
 ## Features
 
@@ -63,12 +63,21 @@ To start your Phoenix app:
 
   - Install nodejs dependencies with `npm install`
   - Install bower dependencies with `bower install`
+  - Intall elm dependencies with `elm package install`
   - Install dependencies with `mix deps.get`
+  - Create Ecto Databases with `mix ecto.create`
+  - Migrate Ecto Databases with `mix ecto.migrate`
   - Start Phoenix endpoint with `mix phoenix.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+
+## How to
+
+### Add new page
+
+- Create new sub-folder for component in web/elm/Component folder
 
 ## Learn more
 

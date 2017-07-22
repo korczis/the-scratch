@@ -18,13 +18,17 @@
   def application do
     [mod: {WebSpa, []},
      applications: [
+        :absinthe,
         :cowboy,
         :gettext,
+        :guardian,
         :logger,
         :oauth,
         :phoenix,
         :phoenix_pubsub,
         :phoenix_html,
+        :postgrex,
+        :runtime_tools,
         :ueberauth_facebook,
         :ueberauth_google,
         :ueberauth_github,
@@ -42,12 +46,15 @@
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:ecto, "~> 2.1"},
+    [
+     {:absinthe, "~> 1.3.1"},
      {:cors_plug, "~> 1.3"},
      {:cowboy, "~> 1.0"},
      {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
+     {:ecto, "~> 2.1"},
      {:exfmt, github: "lpil/exfmt", only: [:dev, :test], runtime: false},
      {:gettext, "~> 0.11"},
+     {:guardian, "~> 0.14"},
      {:oauth, github: "tim/erlang-oauth"},
      {:phoenix, "~> 1.2.4"},
      {:phoenix_pubsub, "~> 1.0"},

@@ -5,6 +5,7 @@ type Page
     | NotFound
     | Home
     | Map
+    | Profile
     | SignIn
     | SignUp
 

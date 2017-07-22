@@ -11,6 +11,7 @@ import Component.Map.View
 import Component.Navbar.View
 import Component.NotFound.View
 import Component.Page.Component as Page
+import Component.Profile.View
 import Component.SignIn.View
 import Component.SignUp.View
 
@@ -32,6 +33,9 @@ viewPage model =
 
             Page.Loaded Page.NotFound ->
                 Component.NotFound.View.view
+
+            Page.Loaded Page.Profile ->
+                Component.Profile.View.view
 
             Page.Loaded Page.SignIn ->
                 Component.SignIn.View.view

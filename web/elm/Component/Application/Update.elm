@@ -30,7 +30,6 @@ updatePage page msg model =
             in
                 ( { model | page = Component.Page.Component.Loaded (toModel newModel) }, Cmd.map toMsg newCmd )
 
-        -- errored =  pageErrored model
     in
         case ( msg, page ) of
             ( Msg.NoOp, _ ) ->
@@ -41,6 +40,9 @@ updatePage page msg model =
 
             ( Msg.AuthUser (Ok user), _) ->
                 { model | session = { session | user = Just user } } => Cmd.none
+
+            ( Msg.SignOut, _) ->
+                { model | session = { session | user = Nothing} } => Cmd.none
 
             ( Msg.AuthUser (Err _), _) ->
                 ( model, Cmd.none )

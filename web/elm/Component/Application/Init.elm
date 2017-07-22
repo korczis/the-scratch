@@ -17,6 +17,7 @@ import Component.Application.Helper exposing(socketServer)
 import Component.Application.Model exposing(Model)
 import Component.Application.Msg as Msg
 import Component.Auth.Helper exposing(getAuthUser)
+import Component.Map.Init
 import Component.Page.Component as Page
 import Component.Window.Helper exposing(getWindowSize)
 import Data.User as User
@@ -47,6 +48,9 @@ setRoute maybeRoute model =
         Just Route.Map ->
             { model | page = Page.Loaded Page.Map } => Cmd.none
 
+        Just Route.Profile ->
+            { model | page = Page.Loaded Page.Profile } => Cmd.none
+
         Just Route.SignIn ->
             { model | page = Page.Loaded Page.SignIn } => Cmd.none
 
@@ -76,11 +80,7 @@ init value location =
                     , socket = Phoenix.Socket.init socketServer
                         |> Phoenix.Socket.withDebug
                     }
-                , map =
-                    { latitude = 48.2082
-                    , longitude = 16.3738
-                    , zoom = 5
-                    }
+                , map = Component.Map.Init.init
                 , window =
                     {
                         size = Nothing
