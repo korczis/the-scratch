@@ -22,5 +22,6 @@ type Msg
     | UrlChange Navigation.Location
     | WindowResize Window.Size
     | SetLatLongZoom Float Float Int
+    | SetMapType String
     | SignOut
     -- | MapMsg Component.Map.Msg.Msg

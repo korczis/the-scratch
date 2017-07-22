@@ -6,4 +6,7 @@ type alias Model =
     { latitude : Float
     , longitude : Float
     , zoom: Int
+    , mapType : String
+    , mapTypeControl : Bool
+    , streetViewControl : Bool
     }

@@ -63,7 +63,16 @@ updatePage page msg model =
                 setRoute route model
 
             ( Msg.SetLatLongZoom lat long zoom , _ ) ->
-                ( { model | map = { longitude = long, latitude = lat, zoom = zoom } } , Cmd.none)
+                let
+                    modelMap = model.map
+                in
+                    ( { model | map = { modelMap | longitude = long, latitude = lat, zoom = zoom } } , Cmd.none)
+
+            ( Msg.SetMapType typ , _ ) ->
+                let
+                    modelMap = model.map
+                in
+                    ( { model | map = { modelMap | mapType = typ } } , Cmd.none)
 
             ( Msg.SetUser user, _ ) ->
                 let
