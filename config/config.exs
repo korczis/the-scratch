@@ -29,7 +29,7 @@ config :guardian, Guardian,
   ttl: { 30, :days },
   allowed_drift: 2000,
   verify_issuer: true, # optional
-  secret_key: "DhUiKQw5XpO5snL23b1LW6zo521PmHnohU7i3i8mpyvPAQe/Pj4tVQhaCGwGFnCZ",
+  secret_key: System.get_env("GUARDIAN_SECRET_KEY"),
   serializer: WebSpa.GuardianSerializer
 
 # See http://geoffreylessel.com/2016/connecting-to-multiple-databases-with-ecto/
