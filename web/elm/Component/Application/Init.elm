@@ -13,7 +13,6 @@ import Phoenix.Socket
 import Window
 
 -- Local Imports
-import Component.Application.Helper exposing(socketServer)
 import Component.Application.Model exposing(Model)
 import Component.Application.Msg as Msg
 import Component.Auth.Helper exposing(getAuthUser)
@@ -75,15 +74,12 @@ init value location =
                     }
                 , page = Page.Loaded Page.initialPage
                 , session =
-                    {
-                    user = Nothing
-                    , socket = Just (Phoenix.Socket.init socketServer
-                        |> Phoenix.Socket.withDebug)
+                    { user = Nothing
+                    , socket = Nothing
                     }
                 , map = Component.Map.Init.init
                 , window =
-                    {
-                        size = Nothing
+                    { size = Nothing
                     }
                 }
 

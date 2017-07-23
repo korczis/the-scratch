@@ -5,6 +5,7 @@ import Bootstrap.Carousel as Carousel
 import Phoenix.Socket
 
 -- Local Imports
+import Component.Application.Helper exposing(socketServer)
 import Component.Application.Model exposing(Model)
 import Component.Application.Msg as Msg
 import Component.Application.Init exposing(setRoute)
@@ -39,7 +40,10 @@ updatePage page msg model =
                 { model | carousel = Carousel.update subMsg model.carousel } ! []
 
             ( Msg.AuthUser (Ok user), _) ->
-                { model | session = { session | user = Just user } } => Cmd.none
+                let
+                    socket = Just (Phoenix.Socket.init socketServer |> Phoenix.Socket.withDebug)
+                in
+                    { model | session = { session | user = Just user,  socket = socket } } => Cmd.none
 
             ( Msg.SignOut, _) ->
                 { model | session = { session | user = Nothing} } => Cmd.none
