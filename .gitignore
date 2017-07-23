@@ -31,3 +31,6 @@ erl_crash.dump
 
 # Temporary Files
 tmp/
+
+# Temporary local scripts
+.env.sh
