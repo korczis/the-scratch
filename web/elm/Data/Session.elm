@@ -8,6 +8,6 @@ import Data.User as User exposing (User)
 
 type alias Session =
     { user : Maybe User
-    , socket: Phoenix.Socket.Socket Msg
+    , socket: Maybe (Phoenix.Socket.Socket Msg)
     }
 

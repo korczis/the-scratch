@@ -20,10 +20,18 @@ sessionChange =
 -- TODO: Compose from Component/*/Subscription.elm#subscription
 subscriptions : Model -> Sub Msg.Msg
 subscriptions model =
-    Sub.batch
-        [ Navbar.subscriptions model.navbar.state Msg.NavbarMsg
-        , Sub.map Msg.SetUser sessionChange
-        , Phoenix.Socket.listen model.session.socket Msg.PhoenixMsg
-        , Carousel.subscriptions model.carousel Msg.CarouselMsg
-        , Window.resizes Msg.WindowResize
-        ]
+    let
+        tmp =
+            [ Navbar.subscriptions model.navbar.state Msg.NavbarMsg
+            , Sub.map Msg.SetUser sessionChange
+            , Carousel.subscriptions model.carousel Msg.CarouselMsg
+            , Window.resizes Msg.WindowResize
+            ]
+
+        subs = case model.session.socket of
+            Just socket ->
+                tmp ++ [Phoenix.Socket.listen socket Msg.PhoenixMsg]
+            Nothing ->
+                tmp
+    in
+        Sub.batch subs

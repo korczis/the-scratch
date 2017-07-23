@@ -94,12 +94,19 @@ updatePage page msg model =
                 session =
                     model.session
 
-                ( phxSocket, phxCmd ) =
-                    Phoenix.Socket.update msg model.session.socket
+                socketMsg = case model.session.socket of
+                    Just socket ->
+                        Just (Phoenix.Socket.update msg socket)
+                    Nothing ->
+                        Nothing
                in
-                 ( { model | session = { session | socket = phxSocket } }
-                 , Cmd.map Msg.PhoenixMsg phxCmd
-                 )
+                case socketMsg of
+                    Just ( phxSocket, phxCmd ) ->
+                     ( { model | session = { session | socket = Just phxSocket } }
+                     , Cmd.map Msg.PhoenixMsg phxCmd
+                     )
+                    Nothing ->
+                        ( model, Cmd.none )
 
             (Msg.WindowResize size, _) ->
                 let

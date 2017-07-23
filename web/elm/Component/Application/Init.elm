@@ -77,8 +77,8 @@ init value location =
                 , session =
                     {
                     user = Nothing
-                    , socket = Phoenix.Socket.init socketServer
-                        |> Phoenix.Socket.withDebug
+                    , socket = Just (Phoenix.Socket.init socketServer
+                        |> Phoenix.Socket.withDebug)
                     }
                 , map = Component.Map.Init.init
                 , window =
