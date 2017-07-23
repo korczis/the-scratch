@@ -1,3 +1,6 @@
+# Intelli J Idea project
+.idea/
+
 # App artifacts
 /_build
 /db
@@ -25,3 +28,6 @@ erl_crash.dump
 # Compiled assets
 /priv/static/assets
 /priv/static/components
+
+# Temporary Files
+tmp/
