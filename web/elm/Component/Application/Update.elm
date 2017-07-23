@@ -46,7 +46,7 @@ updatePage page msg model =
                     { model | session = { session | user = Just user,  socket = socket } } => Cmd.none
 
             ( Msg.SignOut, _) ->
-                { model | session = { session | user = Nothing} } => Cmd.none
+                { model | session = { session | user = Nothing, socket = Nothing } } => Cmd.none
 
             ( Msg.AuthUser (Err _), _) ->
                 ( model, Cmd.none )
@@ -93,7 +93,7 @@ updatePage page msg model =
                     { model | session = { session | user = user } }
                         => cmd
 
-            (Msg.PhoenixMsg msg, _) ->
+            ( Msg.PhoenixMsg msg, _ ) ->
                let
                 session =
                     model.session
@@ -112,7 +112,10 @@ updatePage page msg model =
                     Nothing ->
                         ( model, Cmd.none )
 
-            (Msg.WindowResize size, _) ->
+            ( Msg.Tick delta, _ ) ->
+                ( model, Cmd.none )
+
+            ( Msg.WindowResize size, _ ) ->
                 let
                     window =
                         model.window

@@ -1,11 +1,17 @@
 module Component.Application.Msg exposing(..)
 
+-- Core Imports
+import Http
+import Time
+
+-- Library Imports
 import Bootstrap.Carousel as Carousel
 import Bootstrap.Navbar as Navbar
-import Http
 import Navigation
-import Window
 import Phoenix.Socket
+import Window
+
+-- Local Imports
 import Data.User as User
 import Route
 
@@ -24,4 +30,5 @@ type Msg
     | SetLatLongZoom Float Float Int
     | SetMapType String
     | SignOut
+    | Tick Time.Time
     -- | MapMsg Component.Map.Msg.Msg

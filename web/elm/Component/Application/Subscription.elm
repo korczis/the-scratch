@@ -1,6 +1,9 @@
 module Component.Application.Subscription exposing(subscriptions)
 
+-- Core Imports
+import Time
 -- Library Imports
+import AnimationFrame
 import Bootstrap.Navbar as Navbar
 import Bootstrap.Carousel as Carousel
 import Json.Decode as Decode
@@ -22,7 +25,8 @@ subscriptions : Model -> Sub Msg.Msg
 subscriptions model =
     let
         tmp =
-            [ Navbar.subscriptions model.navbar.state Msg.NavbarMsg
+            [ AnimationFrame.diffs (\delta -> Msg.Tick delta)
+            , Navbar.subscriptions model.navbar.state Msg.NavbarMsg
             , Sub.map Msg.SetUser sessionChange
             , Carousel.subscriptions model.carousel Msg.CarouselMsg
             , Window.resizes Msg.WindowResize
