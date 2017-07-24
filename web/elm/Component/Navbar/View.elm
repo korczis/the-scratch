@@ -12,7 +12,6 @@ import Bootstrap.Navbar as Navbar
 import Assets
 import Component.Application.Model exposing(Model)
 import Component.Application.Msg as Msg
-import Port.AnimationFrame
 
 view : Model -> Html Msg.Msg
 view model =
