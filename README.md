@@ -1,5 +1,7 @@
 # About
 
+Single Page Application written in Elm with Elixir/Phoenix Backend
+
 ## Status
 
 [![Build Status](https://travis-ci.org/korczis/the-scratch.svg?branch=master)](https://travis-ci.org/korczis/the-scratch)
