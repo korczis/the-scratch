@@ -8,15 +8,15 @@
 
 ### Core
 
-- [ ] Authentication
+- [x] Authentication
   - [x] OAuth
     - [x] Github
     - [x] Google
     - [x] Facebook
     - [x] LinkedIn
     - [x] Twitter
-  - [ ] Sign In
-  - [ ] Sign Up
+  - [x] Sign In
+  - [x] Sign Up
 - [x] Bootstrap Integration
   - [x] Carousel
   - [x] Navigation Bar
@@ -25,8 +25,8 @@
 - [x] Google Maps
 - [ ] GraphQL
 - [ ] Hot Reloading
-- [ ] Persistence (via Ecto)
-  - [ ] PostgreSQL
+- [x] Persistence (via Ecto)
+  - [x] PostgreSQL
   - [ ] Couchbase
 - [x] Phoenix Websocket
 - [x] Router
@@ -34,6 +34,10 @@
   - [ ] Server Side
   - [ ] Client Side
 - [ ] User Management
+  - [x] Create User
+  - [ ] Read/Get User
+  - [ ] Update User
+  - [ ] Delete User
 - [x] Webpack Integration
   - [x] Development
   - [ ] Production
