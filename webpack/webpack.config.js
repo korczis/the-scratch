@@ -8,6 +8,7 @@ module.exports = {
     entry: [
         // "bootstrap-loader",
         "./web/static/js/app.js",
+        "./web/elm/Native/Native.js"
     ],
     output: {
         path: path.resolve(__dirname, "../priv/static/assets"),
@@ -52,7 +53,7 @@ module.exports = {
                         }
                     },
                     // 'elm-hot-loader',
-                    'elm-webpack-loader?forceWatch=true&pathToMake=./node_modules/elm/binwrappers/elm-make'
+                    'elm-webpack-loader?forceWatch=true&pathToMake=./node_modules/elm/binwrappers/elm-make&debug'
                 ]
             },
             {
