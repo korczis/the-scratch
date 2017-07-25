@@ -31,7 +31,9 @@ view model =
                     ]
                 ]
             Nothing ->
-                []
+                [ Navbar.formItem []
+                    [ Component.Stats.View.view ]
+                ]
 
         navbarItems = case model.session.user of
             Just _ ->
