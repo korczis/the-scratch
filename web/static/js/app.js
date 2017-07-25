@@ -4,7 +4,6 @@ require('tether/dist/css/tether-theme-basic.css');
 require('bootstrap/dist/css/bootstrap.css');
 
 var csrf = document.currentScript.getAttribute('csrf');
-console.log(csrf);
 
 var Elm = require('Main');
 var node = document.getElementById('elm-app');
