@@ -5,6 +5,7 @@ import Window
 
 -- Local Imports
 import Data.Session as Session
+import Component.Application.Flags as Flags
 import Component.Page.Component
 import Component.Home.Model
 import Component.History.Model
@@ -13,7 +14,8 @@ import Component.Navbar.Model
 import Component.Window.Model
 
 type alias Model =
-    { history : Component.History.Model.Model
+    { flags : Flags.Flags
+    , history : Component.History.Model.Model
     , navbar : Component.Navbar.Model.Model
     , carousel : Component.Home.Model.Model
     , page : Component.Page.Component.State

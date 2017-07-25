@@ -10,6 +10,7 @@ import Component.Application.Model exposing(Model)
 import Component.Application.Msg as Msg
 import Component.Application.Init exposing(setRoute)
 import Component.Page.Component
+import Ports exposing(toJs)
 import Route
 import Util exposing ((=>))
 
@@ -62,6 +63,9 @@ updatePage page msg model =
                 ( { model | history = location :: model.history }
                 , Cmd.none
                 )
+
+            ( Msg.SendToJs str, _ ) ->
+                ( model, toJs str )
 
             ( Msg.SetRoute route, _ ) ->
                 setRoute route model

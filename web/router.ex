@@ -28,6 +28,8 @@ defmodule WebSpa.Router do
     get "/user", AuthController, :user
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
+
+    post "/signout", AuthController, :sign_out
   end
 
   scope "/api/v1", as: :api_v1, alias: WebSpa.API.V1 do

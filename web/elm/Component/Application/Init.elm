@@ -8,11 +8,12 @@ import Task
 import Bootstrap.Carousel as Carousel exposing (defaultStateOptions)
 import Bootstrap.Navbar as Navbar
 import Navigation
-import Json.Decode as Decode exposing (Value)
+import Json.Decode as Decode exposing (..)
 import Phoenix.Socket
 import Window
 
 -- Local Imports
+import Component.Application.Flags
 import Component.Application.Model exposing(Model)
 import Component.Application.Msg as Msg
 import Component.Auth.Helper exposing(getAuthUser)
@@ -56,14 +57,31 @@ setRoute maybeRoute model =
         Just Route.SignUp ->
             { model | page = Page.Loaded Page.SignUp } => Cmd.none
 
+send : msg -> Cmd msg
+send msg =
+  Task.succeed msg
+  |> Task.perform identity
+
+type alias Flags =
+  { csrf : String
+  }
+
 init : Value -> Navigation.Location -> ( Model, Cmd Msg.Msg )
 init value location =
     let
         ( navbarState, navbarCmd ) =
             Navbar.initialState Msg.NavbarMsg
+
+        initFlags = case (decodeValue Component.Application.Flags.decoder value) of
+            Ok (res) ->
+                res
+            _ ->
+                Component.Application.Flags.defaultFlags
+
         ( routeState, routeCmd ) =
             setRoute (Route.fromLocation location)
-                { history = [ location ]
+                { flags = initFlags
+                , history = [ location ]
                 , navbar =
                     { state = navbarState
                     }
@@ -91,5 +109,6 @@ init value location =
             , routeCmd
             , getWindowSize
             , getAuthUser
+            , send (Msg.SendToJs "Hello World!")
            ]
         )

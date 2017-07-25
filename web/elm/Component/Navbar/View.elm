@@ -1,17 +1,23 @@
 module Component.Navbar.View exposing (..)
 
--- Library Imports
-import Bootstrap.Button as Button
-import Bootstrap.Form.Input as Input
+-- Core Imports
 import Html.Attributes exposing (..)
 import Html exposing (..)
 import Html.Events exposing (onClick)
+import Http
+import HttpBuilder exposing (RequestBuilder, withExpect, withQueryParams)
+
+-- Library Imports
+import Bootstrap.Button as Button
+import Bootstrap.Form.Input as Input
 import Bootstrap.Navbar as Navbar
+import Json.Decode as Decode
 
 -- Local Imports
 import Assets
 import Component.Application.Model exposing(Model)
 import Component.Application.Msg as Msg
+import Component.Stats.View
 
 view : Model -> Html Msg.Msg
 view model =
@@ -37,8 +43,10 @@ view model =
                 , Navbar.itemLink [ href "/#/auth/signup" ] [ text "Sign up" ]
                 ]
             |> Navbar.customItems
-                [ Navbar.formItem []
+                [ Navbar.formItem [ action "/auth/signout", method "post" ]
                     [ Button.button [ Button.attrs [ onClick Msg.SignOut, href "javascript:void(0);" ] ] [ text "Sign out" ]
+                    , input [ Html.Attributes.attribute "type" "hidden", name "_csrf_token", value model.flags.csrf ] []
+                    , Component.Stats.View.view
                     ]
                 ]
 --            |> Navbar.customItems

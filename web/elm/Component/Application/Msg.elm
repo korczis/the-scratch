@@ -27,6 +27,7 @@ type Msg
     | SetUser (Maybe User.User)
     | UrlChange Navigation.Location
     | WindowResize Window.Size
+    | SendToJs String
     | SetLatLongZoom Float Float Int
     | SetMapType String
     | SignOut
