@@ -1,12 +1,12 @@
-defmodule WebSpa.Web do
+defmodule TheScratch.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use WebSpa.Web, :controller
-      use WebSpa.Web, :view
+      use TheScratch.Web, :controller
+      use TheScratch.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -26,8 +26,8 @@ defmodule WebSpa.Web do
     quote do
       use Phoenix.Controller
 
-      import WebSpa.Router.Helpers
-      import WebSpa.Gettext
+      import TheScratch.Router.Helpers
+      import TheScratch.Gettext
     end
   end
 
@@ -41,9 +41,9 @@ defmodule WebSpa.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import WebSpa.Router.Helpers
-      import WebSpa.ErrorHelpers
-      import WebSpa.Gettext
+      import TheScratch.Router.Helpers
+      import TheScratch.ErrorHelpers
+      import TheScratch.Gettext
     end
   end
 
@@ -56,7 +56,7 @@ defmodule WebSpa.Web do
   def channel do
     quote do
       use Phoenix.Channel
-      import WebSpa.Gettext
+      import TheScratch.Gettext
     end
   end
 

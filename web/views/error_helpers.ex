@@ -1,4 +1,4 @@
-defmodule WebSpa.ErrorHelpers do
+defmodule TheScratch.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule WebSpa.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(WebSpa.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(TheScratch.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(WebSpa.Gettext, "errors", msg, opts)
+      Gettext.dgettext(TheScratch.Gettext, "errors", msg, opts)
     end
   end
 end

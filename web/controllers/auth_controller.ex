@@ -1,4 +1,4 @@
-defmodule WebSpa.AuthController do
+defmodule TheScratch.AuthController do
   @moduledoc """
   Auth controller responsible for handling Ueberauth responses
   """
@@ -7,10 +7,11 @@ defmodule WebSpa.AuthController do
   require Ecto.Query
 
   alias Ecto.Query
-  alias WebSpa.Repo
   alias Guardian.Plug
+  alias TheScratch.Repo
+  alias TheScratch.User
 
-  use WebSpa.Web, :controller
+  use TheScratch.Web, :controller
   plug Ueberauth
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, params) do

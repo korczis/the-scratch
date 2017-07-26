@@ -10,7 +10,7 @@ view =
         [ id "stats"
         , style
             [ ( "background-color", "red" )
-            , ( "height", "48px" )
+            , ( "height", "40px" )
             , ( "width", "80px" )
             , ( "margin-left", "10px" )
             ]

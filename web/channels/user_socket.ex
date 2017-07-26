@@ -1,8 +1,11 @@
-defmodule WebSpa.UserSocket do
+defmodule TheScratch.UserSocket do
   use Phoenix.Socket
+  use Guardian.Phoenix.Socket
+
+  require Logger
 
   ## Channels
-  channel "room:*", WebSpa.RoomChannel
+  channel "room:*", TheScratch.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
@@ -19,7 +22,9 @@ defmodule WebSpa.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
-  def connect(_params, socket) do
+  def connect(params, socket) do
+    Logger.debug "SOCKET: #{inspect(params)}"
+
     {:ok, socket}
   end
 
@@ -30,7 +35,7 @@ defmodule WebSpa.UserSocket do
   # Would allow you to broadcast a "disconnect" event and terminate
   # all active sockets and channels for a given user:
   #
-  #     WebSpa.Endpoint.broadcast("users_socket:#{user.id}", "disconnect", %{})
+  #     TheScratch.Endpoint.broadcast("users_socket:#{user.id}", "disconnect", %{})
   #
   # Returning `nil` makes this socket anonymous.
   def id(_socket), do: nil

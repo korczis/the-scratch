@@ -1,4 +1,4 @@
-defmodule WebSpa.Repo.Migrations.CreateUsersTable do
+defmodule TheScratch.Repo.Migrations.CreateUsersTable do
   use Ecto.Migration
 
   def change do

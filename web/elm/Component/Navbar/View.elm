@@ -12,6 +12,8 @@ import Bootstrap.Button as Button
 import Bootstrap.Form.Input as Input
 import Bootstrap.Navbar as Navbar
 import Json.Decode as Decode
+import Navigation
+import Route
 
 -- Local Imports
 import Assets
@@ -23,16 +25,19 @@ view : Model -> Html Msg.Msg
 view model =
     let
         signout = case model.session.user of
-            Just _ ->
+            Just user ->
                 [ Navbar.formItem [ action "/auth/signout", method "post" ]
-                    [ Button.button [ Button.attrs [ onClick Msg.SignOut, href "javascript:void(0);" ] ] [ text "Sign out" ]
+                    [ div [ style[ ("padding-right", "10px") ] ] [ text user.email ]
+                    , Button.button [ Button.attrs [ onClick Msg.SignOut, href "javascript:void(0);" ] ] [ text "Sign out" ]
                     , input [ Html.Attributes.attribute "type" "hidden", name "_csrf_token", value model.flags.csrf ] []
                     , Component.Stats.View.view
                     ]
                 ]
             Nothing ->
-                [ Navbar.formItem []
-                    [ Component.Stats.View.view ]
+                [ Navbar.formItem [ ]
+                    [ Button.linkButton [ Button.attrs [ href "/#/auth/signin" ] ] [ text "Sign in" ]
+                    , Component.Stats.View.view
+                    ]
                 ]
 
         navbarItems = case model.session.user of
@@ -40,9 +45,7 @@ view model =
                 [ Navbar.itemLink [ href "/#/map" ] [ text "Map" ]
                 ]
             Nothing ->
-                [ Navbar.itemLink [ href "/#/auth/signin" ] [ text "Sign in" ]
-                , Navbar.itemLink [ href "/#/auth/signup" ] [ text "Sign up" ]
-                ]
+                []
 
         customItems = signout
     in
@@ -60,7 +63,7 @@ view model =
                             ]
                         ]
                         []
-                    , text "Web SPA"
+                    , text "The Scratch"
                     ]
                 |> Navbar.items navbarItems
                 |> Navbar.customItems customItems

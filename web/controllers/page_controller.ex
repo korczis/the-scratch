@@ -1,8 +1,7 @@
-defmodule WebSpa.PageController do
-  use WebSpa.Web, :controller
+defmodule TheScratch.PageController do
+  use TheScratch.Web, :controller
 
   def index(conn, _params) do
-    conn
-      |> render "index.html"
+     render conn, "index.html"
   end
 end

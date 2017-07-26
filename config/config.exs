@@ -6,11 +6,11 @@
 use Mix.Config
 
 # Configures the endpoint
-config :web_spa, WebSpa.Endpoint,
+config :the_scratch, TheScratch.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Rp0yPLkzzx5Derw7c65Qx71W2M6IOsgkh+eqBtnEGls7Yfw6FwrVAvxV/RjeRlP2",
-  render_errors: [view: WebSpa.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: WebSpa.PubSub,
+  render_errors: [view: TheScratch.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: TheScratch.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
@@ -25,23 +25,23 @@ import_config "#{Mix.env}.exs"
 config :guardian, Guardian,
   allowed_algos: ["HS512"], # optional
   verify_module: Guardian.JWT,  # optional
-  issuer: "WebSpa",
+  issuer: "TheScratch",
   ttl: { 30, :days },
   allowed_drift: 2000,
   verify_issuer: true, # optional
   secret_key: System.get_env("GUARDIAN_SECRET_KEY"),
-  serializer: WebSpa.GuardianSerializer
+  serializer: TheScratch.GuardianSerializer
 
 # See http://geoffreylessel.com/2016/connecting-to-multiple-databases-with-ecto/
 # See http://ricostacruz.com/cheatsheets/phoenix-migrations.html
-config :web_spa, WebSpa.Repo,
+config :the_scratch, TheScratch.Repo,
   adapter: Ecto.Adapters.Postgres,
-  database: "web_spa",
+  database: "the_scratch",
   username: "postgres",
   password: "mysecretpassword",
   hostname: "localhost"
 
-config :web_spa, ecto_repos: [WebSpa.Repo]
+config :the_scratch, ecto_repos: [TheScratch.Repo]
 
 config :ueberauth, Ueberauth,
   providers: [

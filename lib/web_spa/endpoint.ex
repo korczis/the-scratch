@@ -1,14 +1,14 @@
-defmodule WebSpa.Endpoint do
-  use Phoenix.Endpoint, otp_app: :web_spa
+defmodule TheScratch.Endpoint do
+  use Phoenix.Endpoint, otp_app: :the_scratch
 
-  socket "/socket", WebSpa.UserSocket
+  socket "/socket", TheScratch.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :web_spa, gzip: false,
+    at: "/", from: :the_scratch, gzip: false,
     only: ~w(assets components css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -35,8 +35,8 @@ defmodule WebSpa.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_web_spa",
+    key: "_the_scratch",
     signing_salt: "+EZWBNCm"
 
-  plug WebSpa.Router
+  plug TheScratch.Router
 end

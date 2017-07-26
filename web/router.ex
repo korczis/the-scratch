@@ -1,5 +1,5 @@
-defmodule WebSpa.Router do
-  use WebSpa.Web, :router
+defmodule TheScratch.Router do
+  use TheScratch.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -22,7 +22,11 @@ defmodule WebSpa.Router do
     plug Guardian.Plug.LoadResource
   end
 
-  scope "/auth", WebSpa do
+  pipeline :graphql do
+    plug :fetch_cookies
+  end
+
+  scope "/auth", TheScratch do
     pipe_through [:browser, :browser_session]
 
     get "/user", AuthController, :user
@@ -32,18 +36,32 @@ defmodule WebSpa.Router do
     post "/signout", AuthController, :sign_out
   end
 
-  scope "/api/v1", as: :api_v1, alias: WebSpa.API.V1 do
+  scope "/api/v1", as: :api_v1, alias: TheScratch.API.V1 do
     pipe_through :api
   end
 
-  scope "/", WebSpa do
+  # Other scopes may use custom stacks.
+  scope "/api", TheScratch do
+    pipe_through :api
+  end
+
+  scope "/graphql" do
+    pipe_through :graphql
+
+    forward "/", Absinthe.Plug, schema: TheScratch.Schema
+  end
+
+  scope "/graphiql" do
+    pipe_through :graphql
+
+    get "/", Absinthe.Plug.GraphiQL, schema: TheScratch.Schema
+    post "/", Absinthe.Plug.GraphiQL, schema: TheScratch.Schema
+  end
+
+  scope "/", TheScratch do
     pipe_through [:browser, :browser_session] # Use the default browser stack
 
     get "/*path", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  scope "/api", WebSpa do
-    pipe_through :api
-  end
 end

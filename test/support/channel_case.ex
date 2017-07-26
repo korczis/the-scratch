@@ -1,4 +1,4 @@
-defmodule WebSpa.ChannelCase do
+defmodule TheScratch.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -22,7 +22,7 @@ defmodule WebSpa.ChannelCase do
 
 
       # The default endpoint for testing
-      @endpoint WebSpa.Endpoint
+      @endpoint TheScratch.Endpoint
     end
   end
 

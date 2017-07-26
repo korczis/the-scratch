@@ -1,4 +1,4 @@
-defmodule User do
+defmodule TheScratch.User do
   @moduledoc """
   User Schema
   """

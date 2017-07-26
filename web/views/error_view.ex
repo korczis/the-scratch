@@ -1,5 +1,5 @@
-defmodule WebSpa.ErrorView do
-  use WebSpa.Web, :view
+defmodule TheScratch.ErrorView do
+  use TheScratch.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found"

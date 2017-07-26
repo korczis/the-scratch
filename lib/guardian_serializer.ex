@@ -1,8 +1,8 @@
-defmodule WebSpa.GuardianSerializer do
+defmodule TheScratch.GuardianSerializer do
   @behaviour Guardian.Serializer
 
-  alias WebSpa.Repo
-  # alias WebSpa.User
+  alias TheScratch.Repo
+  alias TheScratch.User
 
   def for_token(user = %User{}) do
     { :ok, "User:#{user.id}" }

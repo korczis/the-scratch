@@ -1,3 +1,3 @@
-defmodule WebSpa.LayoutViewTest do
-  use WebSpa.ConnCase, async: true
+defmodule TheScratch.LayoutViewTest do
+  use TheScratch.ConnCase, async: true
 end

@@ -1,8 +1,8 @@
-    defmodule WebSpa.Mixfile do
+    defmodule TheScratch.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :web_spa,
+    [app: :the_scratch,
      version: "0.0.1",
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
@@ -16,7 +16,7 @@
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {WebSpa, []},
+    [mod: {TheScratch, []},
      applications: [
         :absinthe,
         :cowboy,
@@ -47,7 +47,8 @@
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-     {:absinthe, "~> 1.3.1"},
+     {:absinthe, "~> 1.3"},
+     {:absinthe_plug, "~> 1.3"},
      {:cors_plug, "~> 1.3"},
      {:cowboy, "~> 1.0"},
      {:credo, "~> 0.8", only: [:dev, :test], runtime: false},

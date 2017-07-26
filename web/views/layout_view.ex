@@ -1,3 +1,3 @@
-defmodule WebSpa.LayoutView do
-  use WebSpa.Web, :view
+defmodule TheScratch.LayoutView do
+  use TheScratch.Web, :view
 end

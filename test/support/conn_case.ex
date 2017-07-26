@@ -1,4 +1,4 @@
-defmodule WebSpa.ConnCase do
+defmodule TheScratch.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -20,10 +20,10 @@ defmodule WebSpa.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
-      import WebSpa.Router.Helpers
+      import TheScratch.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint WebSpa.Endpoint
+      @endpoint TheScratch.Endpoint
     end
   end
 
