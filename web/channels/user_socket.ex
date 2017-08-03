@@ -22,10 +22,19 @@ defmodule TheScratch.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
-  def connect(params, socket) do
-    Logger.debug "SOCKET: #{inspect(params)}"
+  def connect(%{"token" => jwt} = params, socket) do
+    # Logger.debug "SOCKET: #{inspect(jwt)}"
 
-    {:ok, socket}
+    case sign_in(socket, jwt) do
+      {:ok, authed_socket, guardian_params} ->
+        # user = current_resource(authed_socket)
+        # Logger.debug "USER: #{inspect(user)}"
+
+        {:ok, authed_socket}
+      _ ->
+        #unauthenticated socket
+        {:ok, socket}
+    end
   end
 
   # Socket id's are topics that allow you to identify all sockets for a given user:
