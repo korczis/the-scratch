@@ -26,9 +26,12 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
 - [x] CSRF protection
 - [ ] Google Analytics
 - [x] Google Maps
-- [ ] GraphQL
-- [ ] GraphiQL
+- [ ] GraphQL & Friends
+  - [ ] GraphQL
+  - [ ] GraphiQL
+  - [ ] Relay
 - [ ] Hot Reloading
+- [ ] Loading Indicatorx§
 - [ ] Multipart Upload
 - [x] Persistence (using Ecto)
   - [x] PostgreSQL
