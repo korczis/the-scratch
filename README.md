@@ -23,6 +23,7 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
   - [x] Carousel
   - [x] Navigation Bar
 - [ ] Client Side Logging
+- [x] CSRF protection
 - [ ] Google Analytics
 - [x] Google Maps
 - [ ] GraphQL
