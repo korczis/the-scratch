@@ -94,6 +94,7 @@ init value location =
                 , session =
                     { user = Nothing
                     , socket = Nothing
+                    , token = Nothing
                     }
                 , map = Component.Map.Init.init
                 , window =

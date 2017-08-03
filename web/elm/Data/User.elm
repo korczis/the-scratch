@@ -10,7 +10,9 @@ import Util exposing ((=>))
 
 
 type alias User =
-    { email : String
+    { id: String
+    , email : String
+    , provider: String
     }
 
 
@@ -21,10 +23,14 @@ type alias User =
 decoder : Decoder User
 decoder =
     decode User
+        |> required "id" Decode.string
         |> required "email" Decode.string
+        |> required "provider" Decode.string
 
 encode : User -> Value
 encode user =
     Encode.object
-        [ "email" => Encode.string user.email
+        [ "id" => Encode.string user.id
+        , "email" => Encode.string user.email
+        , "provider" => Encode.string user.provider
         ]

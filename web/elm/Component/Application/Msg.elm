@@ -19,7 +19,7 @@ import Component.Map.Msg
 
 type Msg
     = NoOp
-    | AuthUser (Result Http.Error User.User)
+    | AuthUser (Maybe (User.User, String))
     | CarouselMsg Carousel.Msg
     | NavbarMsg Navbar.State
     | PhoenixMsg (Phoenix.Socket.Msg Msg)

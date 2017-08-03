@@ -40,17 +40,18 @@ updatePage page msg model =
             ( Msg.CarouselMsg subMsg, _ ) ->
                 { model | carousel = Carousel.update subMsg model.carousel } ! []
 
-            ( Msg.AuthUser (Ok user), _) ->
+            ( Msg.AuthUser (Just (user, jwt)), _) ->
                 let
-                    socket = Just (Phoenix.Socket.init socketServer |> Phoenix.Socket.withDebug)
+                    socket = Just (Phoenix.Socket.init (socketServer jwt)|> Phoenix.Socket.withDebug)
                 in
-                    { model | session = { session | user = Just user,  socket = socket } } => Cmd.none
+                    { model | session = { session | user = Just user,  socket = socket, token = Just jwt } } => Cmd.none
+
+            ( Msg.AuthUser (Nothing), _) ->
+                ( model, Cmd.none )
 
             ( Msg.SignOut, _) ->
                 { model | session = { session | user = Nothing, socket = Nothing } } => Cmd.none
 
-            ( Msg.AuthUser (Err _), _) ->
-                ( model, Cmd.none )
 
             ( Msg.NavbarMsg state, _ ) ->
                 let

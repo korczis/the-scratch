@@ -4,17 +4,17 @@ module Main exposing (..)
 import TimeTravel.Navigation as TimeTravel
 
 -- Local Imports
-import Component.Application.Init exposing(init)
+import Component.Application.Init
 import Component.Application.Msg as Msg
-import Component.Application.Update exposing(update)
-import Component.Application.View exposing(view)
-import Component.Application.Subscription exposing(subscriptions)
+import Component.Application.Update
+import Component.Application.View
+import Component.Application.Subscription
 import Route
 
 main =
     TimeTravel.programWithFlags (Route.fromLocation >> Msg.SetRoute)
-        { init = init
-        , view = view
-        , update = update
-        , subscriptions = subscriptions
+        { init = Component.Application.Init.init
+        , view = Component.Application.View.view
+        , update = Component.Application.Update.update
+        , subscriptions = Component.Application.Subscription.subscriptions
         }

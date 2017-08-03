@@ -9,4 +9,4 @@ import Component.Home.Model exposing(Model)
 
 view : Html Msg.Msg
 view =
-    div [] []
+    div [] [ h2 [ ] [ text "Profile" ] ]
