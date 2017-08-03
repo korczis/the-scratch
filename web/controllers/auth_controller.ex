@@ -33,7 +33,7 @@ defmodule TheScratch.AuthController do
     end
 
     { :ok, jwt, _ } = Guardian.encode_and_sign(user)
-    Logger.debug "JWT: #{jwt}"
+    # Logger.debug "JWT: #{jwt}"
 
     conn
     |> Plug.sign_in(user, jwt)
@@ -44,16 +44,17 @@ defmodule TheScratch.AuthController do
   def user(conn, params) do
     user = Guardian.Plug.current_resource(conn)
     case user do
-      %User{email: email} -> json(conn, %{email: "korczis@gmail.com"})
+      %User{id: id, email: email, provider: provider} ->
+        conn
+            |> put_resp_header("jwt", Guardian.Plug.current_token(conn))
+            |> json(%{id: Integer.to_string(id), email: email, provider: provider})
       _ -> json(conn, nil)
     end
-
-
   end
 
   def sign_out(conn, _params) do
       Guardian.Plug.sign_out(conn)
-      |> clear_session
-      |> redirect(to: "/")
+          |> clear_session
+          |> redirect(to: "/")
     end
 end
