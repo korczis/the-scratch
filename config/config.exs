@@ -36,10 +36,10 @@ config :guardian, Guardian,
 # See http://ricostacruz.com/cheatsheets/phoenix-migrations.html
 config :the_scratch, TheScratch.Repo,
   adapter: Ecto.Adapters.Postgres,
-  database: "the_scratch",
-  username: "postgres",
-  password: "mysecretpassword",
-  hostname: "localhost"
+  database: System.get_env("POSTGRES_DATABASE") || "the_scratch",
+  username: System.get_env("POSTGRES_USERNAME") || "postgres",
+  password: System.get_env("POSTGRES_PASSWORD") || "mysecretpassword",
+  hostname: System.get_env("POSTGRES_HOSTNAME") || "localhost"
 
 config :the_scratch, ecto_repos: [TheScratch.Repo]
 
