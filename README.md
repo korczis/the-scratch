@@ -26,8 +26,10 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
 - [ ] Google Analytics
 - [x] Google Maps
 - [ ] GraphQL
+- [ ] GraphiQL
 - [ ] Hot Reloading
-- [x] Persistence (via Ecto)
+- [ ] Multipart Upload
+- [x] Persistence (using Ecto)
   - [x] PostgreSQL
   - [ ] Couchbase
 - [x] Phoenix Websocket
