@@ -55,8 +55,7 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
 
 ### Fancy
 
-- [ ] [Stats.js](https://github.com/mrdoob/stats.js/) - JavaScript Performance Monitor                                                       
-- [ ] Url Shortener
+- [ ] [Stats.js](https://github.com/mrdoob/stats.js/) - JavaScript Performance Monitor
 
 ## Prerequisites
 
@@ -65,18 +64,20 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
 - [elm](http://elm-lang.org/)
 - [elixir](https://elixir-lang.org/)
 - [phoenix](http://www.phoenixframework.org/)
+- [postgresql](https://www.postgresql.org/)
 
 ## Getting started
 
 To start your Phoenix app:
 
-  - Install nodejs dependencies with `npm install`
-  - Install bower dependencies with `bower install`
-  - Intall elm dependencies with `elm package install`
-  - Install dependencies with `mix deps.get`
-  - Create Ecto Databases with `mix ecto.create`
-  - Migrate Ecto Databases with `mix ecto.migrate`
-  - Start Phoenix endpoint with `mix phoenix.server`
+- Edit config/config.ex
+- Install nodejs dependencies with `npm install`
+- Install bower dependencies with `bower install`
+- Install elm dependencies with `elm package install`
+- Install dependencies with `mix deps.get`
+- Create Ecto Databases with `mix ecto.create`
+- Migrate Ecto Databases with `mix ecto.migrate`
+- Start Phoenix endpoint with `mix phoenix.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 

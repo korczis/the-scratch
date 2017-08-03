@@ -32,6 +32,12 @@ updatePage page msg model =
             in
                 ( { model | page = Component.Page.Component.Loaded (toModel newModel) }, Cmd.map toMsg newCmd )
 
+        origin = case List.head model.history of
+            Just history ->
+                history.origin
+            Nothing ->
+                "http://localhost:4000"
+
     in
         case ( msg, page ) of
             ( Msg.NoOp, _ ) ->
@@ -42,7 +48,7 @@ updatePage page msg model =
 
             ( Msg.AuthUser (Just (user, jwt)), _) ->
                 let
-                    socket = Just (Phoenix.Socket.init (socketServer jwt)|> Phoenix.Socket.withDebug)
+                    socket = Just (Phoenix.Socket.init (socketServer origin jwt)|> Phoenix.Socket.withDebug)
                 in
                     { model | session = { session | user = Just user,  socket = socket, token = Just jwt } } => Cmd.none
 
