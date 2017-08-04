@@ -1,5 +1,5 @@
 # Intelli J Idea project
-.idea/
+.idea/*
 
 # App artifacts
 /_build
