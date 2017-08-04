@@ -31,7 +31,7 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
   - [ ] GraphiQL
   - [ ] Relay
 - [ ] Hot Reloading
-- [ ] Loading Indicatorx§
+- [ ] Loading Indicator
 - [ ] Multipart Upload
 - [x] Persistence (using Ecto)
   - [x] PostgreSQL
