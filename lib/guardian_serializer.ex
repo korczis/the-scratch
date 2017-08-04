@@ -1,4 +1,8 @@
 defmodule TheScratch.GuardianSerializer do
+  @moduledoc """
+  Guardian Serializer
+  """
+
   @behaviour Guardian.Serializer
 
   alias TheScratch.Repo
@@ -6,16 +10,22 @@ defmodule TheScratch.GuardianSerializer do
 
   import Logger
 
-  def for_token(user = %User{}) do
-    { :ok, %{id: user.id, email: user.email, provider: user.provider} }
+  def for_token(%User{} = user) do
+    {:ok, %{id: user.id, email: user.email, provider: user.provider}}
   end
 
   def for_token(_) do
-    { :error, "Unknown resource type" }
+    {:error, "Unknown resource type"}
   end
 
   def from_token(user) do
-    { :ok, %User{id: Map.fetch!(user, "id"), email: Map.fetch!(user, "email"), provider: Map.fetch!(user, "provider") } }
+    res_user = %User{
+      id: Map.fetch!(user, "id"),
+      email: Map.fetch!(user, "email"),
+      provider: Map.fetch!(user, "provider")
+    }
+
+    {:ok, res_user}
   end
 
 end

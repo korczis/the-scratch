@@ -1,4 +1,8 @@
 defmodule TheScratch.UserResolver do
+  @moduledoc """
+  GraphQL Resolver - User
+  """
+
   alias TheScratch.Repo
   alias TheScratch.User
 
