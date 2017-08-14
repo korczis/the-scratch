@@ -1,6 +1,7 @@
 module Main exposing (..)
 
 -- Library Imports
+import Navigation
 import TimeTravel.Navigation as TimeTravel
 
 -- Local Imports
@@ -11,8 +12,11 @@ import Component.Application.View
 import Component.Application.Subscription
 import Route
 
+programWithFlags =
+    Navigation.programWithFlags
+
 main =
-    TimeTravel.programWithFlags (Route.fromLocation >> Msg.SetRoute)
+    programWithFlags (Route.fromLocation >> Msg.SetRoute)
         { init = Component.Application.Init.init
         , view = Component.Application.View.view
         , update = Component.Application.Update.update
