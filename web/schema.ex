@@ -10,7 +10,7 @@ defmodule TheScratch.Schema do
 
   query do
     field :users, list_of(:user) do
-      resolve &TUserResolver.all/2
+      resolve &UserResolver.all/2
     end
   end
 
