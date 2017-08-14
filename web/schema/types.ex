@@ -8,5 +8,6 @@ defmodule TheScratch.Schema.Types do
   object :user do
     field :id, :id
     field :email, :string
+    field :provider, :string
   end
 end
