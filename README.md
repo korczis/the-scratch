@@ -15,10 +15,16 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
   - [ ] Per User
   - [ ] GraphQL Calls
   - [ ] REST API Calls
-  - [ ] UI for Users
-  - [ ] UI for Admins
+  - [ ] UI
+    - [ ] Users
+    - [ ] Admins
   - [ ] Scalable
+  - [ ] Zero-cost (abstraction)
+- [ ] Admin
+  - [ ] First created User
 - [x] Authentication
+  - [ ] Email
+  - [x] JWT
   - [x] OAuth
     - [x] Github
     - [x] Google
@@ -27,6 +33,13 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
     - [x] Twitter
   - [x] Sign In
   - [x] Sign Up
+  - [ ] Zero-cost (abstraction)
+- [ ] Authorization
+  - [ ] Permissions
+  - [ ] Roles
+  - [ ] ACL / RBAC
+  - [ ] UI
+  - [ ] Zero-cost (abstraction)
 - [x] Bootstrap Integration
   - [x] Carousel
   - [x] Navigation Bar
@@ -40,17 +53,30 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
   - [ ] Relay
 - [ ] Hot Reloading
 - [ ] Internationalization
-- [ ] Loading Indicator
+- [ ] Loading Indicator/Spinner
 - [ ] Localization
+  - [ ] Server-side
+  - [ ] Client-side
+  - [ ] Extracted/Generated
+  - [ ] Shared (Client & Server)
+  - [ ] Zero-cost (abstraction)
 - [ ] Multipart Upload
-- [x] Persistence (using Ecto)
-  - [x] PostgreSQL
-  - [ ] Couchbase
-- [x] Phoenix Websocket
+- [x] Persistence (using Abstraction/Ecto)
+  - [ ] In-memory
+  - [ ] No-SQL
+    - [ ] Couchbase
+  - [ ] SQL
+    - [ ] SQLite
+    - [x] PostgreSQL
+  - [ ] Zero-cost (abstraction)
 - [x] Router
+- [ ] Rust Integration
+  - [ ] Server-side (call rust from Elixir)
+  - [ ] Client-side (call rust from Elm)
+  - [ ] Zero-cost (abstraction)
 - [ ] Tests
-  - [ ] Server Side
-  - [ ] Client Side
+  - [ ] Server-side
+  - [ ] Client-side
 - [ ] User Management
   - [x] Create User
   - [ ] Read/Get User
@@ -59,6 +85,10 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
 - [x] Webpack Integration
   - [x] Development
   - [ ] Production
+- [ ] WebSocket
+  - [x] Phoenix Websocket Integration
+    - [x ] Authentication
+  - [ ] Push Notifications
 
 ### Deployment
 
