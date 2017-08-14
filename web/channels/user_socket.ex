@@ -22,11 +22,11 @@ defmodule TheScratch.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
-  def connect(%{"token" => jwt} = params, socket) do
+  def connect(%{"token" => jwt} = _params, socket) do
     # Logger.debug "SOCKET: #{inspect(jwt)}"
 
     case sign_in(socket, jwt) do
-      {:ok, authed_socket, guardian_params} ->
+      {:ok, authed_socket, _guardian_params} ->
         # user = current_resource(authed_socket)
         # Logger.debug "USER: #{inspect(user)}"
 
