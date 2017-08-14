@@ -8,6 +8,7 @@ import UrlParser as Url exposing ((</>), Parser, oneOf, parseHash, s, string)
 -- TODO: Generate automatically
 type Route
     = Home
+    | GraphQL
     | Map
     | Profile
     | SignIn
@@ -18,6 +19,7 @@ route : Parser (Route -> a) a
 route =
     oneOf
         [ Url.map Home (s "")
+        , Url.map GraphQL (s "graphql")
         , Url.map Map (s "map")
         , Url.map Profile (s "profile")
         , Url.map SignIn (s "auth" </> s "signin" )
@@ -32,6 +34,9 @@ routeToString page =
             case page of
                 Home ->
                     []
+
+                GraphQL ->
+                    [ "graphql" ]
 
                 Map ->
                     [ "map" ]

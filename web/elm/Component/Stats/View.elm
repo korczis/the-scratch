@@ -4,10 +4,10 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 
 
-view : Html msg
-view =
+view : String -> Html msg
+view statsId =
     div
-        [ id "stats"
+        [ id statsId
         , style
             [ ( "background-color", "red" )
             , ( "height", "40px" )
@@ -16,7 +16,8 @@ view =
             ]
         ]
         [ canvas
-            [ style
+            [ id (statsId ++ "-canvas" )
+            , style
                 [ ( "width", "100%" )
                 , ( "height", "100%" )
                 ]

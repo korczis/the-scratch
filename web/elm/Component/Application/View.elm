@@ -6,6 +6,7 @@ import Html exposing(..)
 -- Local Imports
 import Component.Application.Model exposing(Model)
 import Component.Application.Msg as Msg
+import Component.GraphQL.View
 import Component.Home.View
 import Component.Map.View
 import Component.Navbar.View
@@ -24,6 +25,9 @@ viewPage model =
         case page of
             Page.Loaded Page.Blank ->
                 div [] [ text "Blank" ]
+
+            Page.Loaded Page.GraphQL ->
+                Component.GraphQL.View.view
 
             Page.Loaded Page.Home ->
                 Component.Home.View.view model.carousel

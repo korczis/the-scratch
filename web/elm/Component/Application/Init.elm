@@ -42,6 +42,9 @@ setRoute maybeRoute model =
         Nothing ->
             { model | page = Page.Loaded Page.NotFound } => Cmd.none
 
+        Just Route.GraphQL ->
+            { model | page = Page.Loaded Page.GraphQL } => Cmd.none
+
         Just Route.Home ->
             { model | page = Page.Loaded Page.Home } => Cmd.none
 

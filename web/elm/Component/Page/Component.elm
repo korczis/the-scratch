@@ -2,6 +2,7 @@ module Component.Page.Component exposing (..)
 
 type Page
     = Blank
+    | GraphQL
     | NotFound
     | Home
     | Map
