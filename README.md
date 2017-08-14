@@ -10,6 +10,14 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
 
 ### Core
 
+- [ ] Accounting
+  - [ ] Global
+  - [ ] Per User
+  - [ ] GraphQL Calls
+  - [ ] REST API Calls
+  - [ ] UI for Users
+  - [ ] UI for Admins
+  - [ ] Scalable
 - [x] Authentication
   - [x] OAuth
     - [x] Github
