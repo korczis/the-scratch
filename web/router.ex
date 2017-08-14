@@ -18,7 +18,6 @@ defmodule TheScratch.Router do
   pipeline :api do
     plug :accepts, ["json"]
     plug Guardian.Plug.VerifyHeader, realm: "Bearer"
-    plug Guardian.Plug.VerifySession
     plug Guardian.Plug.LoadResource
   end
 
@@ -38,6 +37,8 @@ defmodule TheScratch.Router do
 
   scope "/api/v1", as: :api_v1, alias: TheScratch.API.V1 do
     pipe_through :api
+
+    get "/users", TheScratch.UsersController, :index
   end
 
   # Other scopes may use custom stacks.
