@@ -10,7 +10,10 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
 
 ### Core
 
-- [ ] Accounting
+- [ ] Accounting/Monitoring
+  - [ ] Metrics
+    - [ ] Queries count
+    - [ ] Query response time Avg
   - [ ] Global
   - [ ] Per User
   - [ ] GraphQL Calls
@@ -20,7 +23,7 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
     - [ ] Admins
   - [ ] Scalable
   - [ ] Zero-cost (abstraction)
-- [ ] Admin
+- [ ] Admin Interface
   - [ ] First created User
 - [x] Authentication
   - [ ] Email
@@ -44,7 +47,13 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
   - [x] Carousel
   - [x] Navigation Bar
 - [ ] Client Side Logging
+- [ ] Configuration
+  - [ ] Configuration Discovery
+  - [ ] Service Discovery
+  - [ ] Zero-cost (abstraction)
 - [x] CSRF protection
+- [ ] Documentation
+  - [ ] Generated - Developers
 - [ ] Google Analytics
 - [x] Google Maps
 - [ ] GraphQL & Friends
@@ -62,6 +71,7 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
   - [ ] Zero-cost (abstraction)
 - [ ] Multipart Upload
 - [x] Persistence (using Abstraction/Ecto)
+  - [ ] Migrations
   - [ ] In-memory
   - [ ] No-SQL
     - [ ] Couchbase
@@ -69,6 +79,8 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
     - [ ] SQLite
     - [x] PostgreSQL
   - [ ] Zero-cost (abstraction)
+- [ ] Presentation
+  - [ ] Generated HTML5
 - [x] Router
 - [ ] Rust Integration
   - [ ] Server-side (call rust from Elixir)
@@ -89,6 +101,7 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
   - [x] Phoenix Websocket Integration
     - [x ] Authentication
   - [ ] Push Notifications
+    - [ ] Persistent Changes
 
 ### Deployment
 
