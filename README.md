@@ -4,6 +4,7 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
 
 ## Status
 
+[![License](https://img.shields.io/github/license/korczis/the-scratch.svg)](https://github.com/korczis/the-scratch/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/korczis/the-scratch.svg?branch=master)](https://travis-ci.org/korczis/the-scratch)
 [![Coverage Status](https://coveralls.io/repos/github/korczis/the-scratch/badge.svg?branch=master)](https://coveralls.io/github/korczis/the-scratch?branch=master)
 
