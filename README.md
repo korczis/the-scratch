@@ -88,7 +88,7 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
   - [ ] Zero-cost (abstraction)
 - [ ] Tests
   - [x] Server-side
-    - [ ] Coverage
+    - [x] Coverage
   - [ ] Client-side
     - [ ] Coverage
 - [ ] User Management
