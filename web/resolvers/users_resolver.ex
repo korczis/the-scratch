@@ -8,7 +8,7 @@ defmodule TheScratch.UsersResolver do
 
   require Logger
 
-  def all(args, info) do
+  def all(_args, _info) do
     {:ok, Repo.all(User)}
   end
 end

@@ -8,7 +8,7 @@ defmodule TheScratch.UserResolver do
 
   require Logger
 
-  def find(%{id: id}, info) do
+  def find(%{id: id}, _info) do
     {:ok, Repo.get(User, id)}
   end
 end

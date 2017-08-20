@@ -45,7 +45,7 @@ defmodule TheScratch.AuthController do
     |> redirect(to: "/#/")
   end
 
-  def user(conn, params) do
+  def user(conn, _params) do
     user = Plug.current_resource(conn)
     case user do
       %User{id: id, email: email, provider: provider} ->

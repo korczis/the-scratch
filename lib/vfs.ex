@@ -54,6 +54,6 @@ defmodule TheScratch.Vfs do
 
     pattern
       |> Path.wildcard
-      |> Enum.map(files, read_files)
+      |> Enum.map(read_files)
   end
 end
