@@ -17,6 +17,7 @@ defmodule TheScratch do
       # Start the endpoint when the application starts
       supervisor(TheScratch.Endpoint, []),
       supervisor(TheScratch.Repo, []),
+      worker(TheScratch.Vfs, [Application.get_env(:the_scratch, TheScratch.Vfs)[:vfs]])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

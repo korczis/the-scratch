@@ -1,0 +1,7 @@
+{
+    users(id: "123") {
+        id
+        provider
+        email
+    }
+}

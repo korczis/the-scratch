@@ -4,40 +4,45 @@ defmodule TheScratch.Vfs do
   require Logger
 
   def start_link(entries) do
-    cache = Enum.reduce(entries, %{}, fn(entry, cache) ->
-      {:ok, vfs_name} = Map.fetch(entry, :name)
-      Map.put(cache, vfs_name, load_vfs(entry))
+    :ets.new(:vfs, [:set, :protected, :named_table])
+
+    Enum.map(entries, fn(entry) ->
+      load_vfs(entry)
     end)
 
-    Logger.debug(inspect(cache))
-
-    # GenServer.start_link(__MODULE__, %{}, name: __MODULE__)
-
-    Task.start_link(fn -> loop(%{}) end)
+    GenServer.start_link(__MODULE__, %{}, name: __MODULE__)
   end
 
   def get(key) do
-    send(self(), {:get, key})
-    nil
+    List.first(:ets.lookup(:vfs, key))
+  end
+
+  def get_value(key) do
+    case List.first(:ets.lookup(:vfs, key)) do
+      {_key, value} -> {:ok, value}
+      nil -> {:err, "Invalid key"}
+    end
+  end
+
+  def get_value!(key) do
+    {:ok, value} = get_value(key)
+    value
   end
 
   defp load_vfs(entry) do
     {:ok, regex} = Map.fetch(entry, :regex)
+    {:ok, vfs_name} = Map.fetch(entry, :name)
 
-    read_files = fn(path, cache) ->
+    read_files = fn(path) ->
       Logger.debug("#{__MODULE__} Loading #{path}")
       {:ok, content} = File.read(path)
-      Map.put(cache, Regex.replace(regex, path, "\\1"), content)
+      key = "#{vfs_name}/#{Regex.replace(regex, path, "\\1")}"
+
+      :ets.insert(:vfs, {key, content})
     end
 
     {:ok, pattern} = Map.fetch(entry, :pattern)
     Path.wildcard(pattern)
-      |> Enum.reduce(%{}, read_files)
-  end
-
-  defp loop(map) do
-    receive do
-      key -> Logger.debug("KEY: #{inspect(key)}")
-    end
+      |> Enum.map(read_files)
   end
 end

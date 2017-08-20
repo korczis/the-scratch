@@ -43,6 +43,15 @@ config :the_scratch, TheScratch.Repo,
 
 config :the_scratch, ecto_repos: [TheScratch.Repo]
 
+config :the_scratch, TheScratch.Vfs,
+  vfs: [
+    %{
+      :pattern => "web/graphql/**/*.graphql",
+      :name => "graphql",
+      :regex => ~r"web/graphql/(.*)\.graphql"
+    }
+  ]
+
 config :ueberauth, Ueberauth,
   providers: [
     facebook: { Ueberauth.Strategy.Facebook, [profile_fields: "name,email,first_name,last_name"] },
