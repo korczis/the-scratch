@@ -24,7 +24,11 @@ defmodule TheScratch.AuthController do
 
     user = case Repo.one(query) do
       nil -> {
-        case Repo.insert %User{email: email, provider: provider, profile: user} do
+        case Repo.insert %User{
+          email: email,
+          provider: provider,
+          profile: user
+        } do
           {:ok, u} -> u
           _ -> nil
         end
@@ -32,7 +36,7 @@ defmodule TheScratch.AuthController do
       u -> u
     end
 
-    {:ok, jwt, _ } = Guardian.encode_and_sign(user)
+    {:ok, jwt, _} = Guardian.encode_and_sign(user)
     # Logger.debug "JWT: #{jwt}"
 
     conn
@@ -47,13 +51,18 @@ defmodule TheScratch.AuthController do
       %User{id: id, email: email, provider: provider} ->
         conn
             |> put_resp_header("jwt", Plug.current_token(conn))
-            |> json(%{id: Integer.to_string(id), email: email, provider: provider})
+            |> json(%{
+              id: Integer.to_string(id),
+              email: email,
+              provider: provider
+            })
       _ -> json(conn, nil)
     end
   end
 
   def sign_out(conn, _params) do
-      Plug.sign_out(conn)
+      conn = Plug.sign_out(conn)
+      conn
           |> clear_session
           |> redirect(to: "/")
     end

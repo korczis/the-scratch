@@ -8,7 +8,7 @@ defmodule TheScratch.API.V1.TheScratch.UsersController do
   alias TheScratch.User
 
   def index(conn, _params) do
-    query = Ecto.Query.from u in User, select: u.id
+    query = Query.from u in User, select: u.id
     res = Repo.all(query)
 
     Logger.debug(inspect(res))

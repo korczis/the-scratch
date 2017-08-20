@@ -1,4 +1,10 @@
 defmodule TheScratch.Vfs do
+  @moduledoc """
+  In-Memory Virtual FileSystem
+
+  Caches files in memory for quick retreival
+  """
+
   use GenServer
 
   require Logger
@@ -6,7 +12,7 @@ defmodule TheScratch.Vfs do
   def start_link(entries) do
     :ets.new(:vfs, [:set, :protected, :named_table])
 
-    Enum.map(entries, fn(entry) ->
+    _ = Enum.map(entries, fn(entry) ->
       load_vfs(entry)
     end)
 
@@ -34,7 +40,10 @@ defmodule TheScratch.Vfs do
     {:ok, vfs_name} = Map.fetch(entry, :name)
 
     read_files = fn(path) ->
-      Logger.debug("#{__MODULE__} Loading #{path}")
+      Logger.debug fn ->
+        "#{__MODULE__} Loading #{path}"
+      end
+
       {:ok, content} = File.read(path)
       key = "#{vfs_name}/#{Regex.replace(regex, path, "\\1")}"
 
@@ -42,7 +51,8 @@ defmodule TheScratch.Vfs do
     end
 
     {:ok, pattern} = Map.fetch(entry, :pattern)
-    Path.wildcard(pattern)
-      |> Enum.map(read_files)
+
+    files = Path.wildcard(pattern)
+    Enum.map(files, read_files)
   end
 end

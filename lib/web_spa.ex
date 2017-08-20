@@ -12,12 +12,14 @@ defmodule TheScratch do
   def start(_type, _args) do
     import Supervisor.Spec
 
+    vfs = Application.get_env(:the_scratch, TheScratch.Vfs)[:vfs]
+
     # Define workers and child supervisors to be supervised
     children = [
       # Start the endpoint when the application starts
       supervisor(TheScratch.Endpoint, []),
       supervisor(TheScratch.Repo, []),
-      worker(TheScratch.Vfs, [Application.get_env(:the_scratch, TheScratch.Vfs)[:vfs]])
+      worker(TheScratch.Vfs, [vfs])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

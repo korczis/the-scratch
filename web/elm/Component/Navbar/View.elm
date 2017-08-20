@@ -27,24 +27,27 @@ view model =
     div []
         [ Navbar.config Msg.NavbarMsg
             |> Navbar.withAnimation
-            |> Navbar.brand
-                [ href "/#/" ]
-                [ img
-                    [ src (Assets.path <| Assets.net)
-                    , class "d-inline-block"
-                    , style
-                        [ ( "width", "30px" )
-                        , ( "margin-right", "15px" )
-                        ]
-                    ]
-                    []
-                , text "The Scratch"
-                ]
+            |> brand
             |> Navbar.items (navbarItems model.session.user)
             |> Navbar.customItems (customItems model.session.user model.flags.csrf)
             |> Navbar.view model.navbar.state
         ]
 
+brand : Navbar.Config msg -> Navbar.Config msg
+brand =
+    Navbar.brand
+        [ href "/#/" ]
+        [ img
+            [ src (Assets.path <| Assets.net)
+            , class "d-inline-block"
+            , style
+                [ ( "width", "30px" )
+                , ( "margin-right", "15px" )
+                ]
+            ]
+            []
+        , text "The Scratch"
+        ]
 
 viewStats : Html msg
 viewStats =
