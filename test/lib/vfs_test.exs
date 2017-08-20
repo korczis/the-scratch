@@ -1,5 +1,5 @@
 defmodule TheScratch.VfsTest do
-  use TheScratch.ConnCase
+  use TheScratch.ConnCase, async: true
 
   test "get" do
     content_vfs = TheScratch.Vfs.get("graphql/user")
