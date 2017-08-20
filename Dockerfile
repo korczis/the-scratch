@@ -16,4 +16,5 @@ RUN mix local.hex --force \
     && mix deps.get \
     && mix deps.compile \
     && npm install \
+    && mix credo --strict \
     && npm run build
