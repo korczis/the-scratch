@@ -9,6 +9,8 @@
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     test_coverage: [tool: ExCoveralls],
+     preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
      deps: deps()]
   end
 
@@ -50,6 +52,7 @@
      {:absinthe, "~> 1.3"},
      {:absinthe_plug, "~> 1.3"},
      {:cors_plug, "~> 1.4"},
+     {:excoveralls, "~> 0.7"},
      {:cowboy, "~> 1.1"},
      {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
      {:ecto, "~> 2.1"},

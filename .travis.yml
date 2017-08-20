@@ -32,5 +32,5 @@ script:
   - /home/ubuntu/sysconfcpus/bin/sysconfcpus -n 2 npm run build
   - mix ecto.create
   - mix ecto.migrate
-  - mix test --trace
+  - mix coveralls --trace
 
