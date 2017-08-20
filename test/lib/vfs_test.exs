@@ -1,7 +1,10 @@
 defmodule TheScratch.VfsTest do
   use TheScratch.ConnCase
 
-  test "VFS" do
-    assert 1 == 1
+  test "get_value!" do
+    content_vfs = TheScratch.Vfs.get_value!("graphql/user")
+    {:ok, content_file} = File.read("web/graphql/user.graphql")
+
+    assert content_vfs == content_file
   end
 end
