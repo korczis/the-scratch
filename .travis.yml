@@ -13,8 +13,7 @@ addons:
   postgresql: 9.5
 
 env:
-  - POSTGRES_PASSWORD=""
-  - MIX_ENV=test
+  - POSTGRES_PASSWORD="" MIX_ENV=test
 
 before_script:
   - curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain nightly
