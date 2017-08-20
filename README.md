@@ -87,8 +87,10 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
   - [ ] Client-side (call rust from Elm)
   - [ ] Zero-cost (abstraction)
 - [ ] Tests
-  - [ ] Server-side
+  - [x] Server-side
+    - [ ] Coverage
   - [ ] Client-side
+    - [ ] Coverage
 - [ ] User Management
   - [x] Create User
   - [ ] Read/Get User
@@ -99,7 +101,7 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
   - [ ] Production
 - [ ] WebSocket
   - [x] Phoenix Websocket Integration
-    - [x ] Authentication
+    - [x] Authentication
   - [ ] Push Notifications
     - [ ] Persistent Changes
 
