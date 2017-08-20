@@ -1,4 +1,4 @@
-defmodule TheScratch.UserResolver do
+defmodule TheScratch.UsersResolver do
   @moduledoc """
   GraphQL Resolver - User
   """
@@ -8,7 +8,7 @@ defmodule TheScratch.UserResolver do
 
   require Logger
 
-  def find(%{id: id}, info) do
-    {:ok, Repo.get(User, id)}
+  def all(args, info) do
+    {:ok, Repo.all(User)}
   end
 end
