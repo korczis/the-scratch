@@ -52,7 +52,8 @@ defmodule TheScratch.Vfs do
 
     {:ok, pattern} = Map.fetch(entry, :pattern)
 
-    files = Path.wildcard(pattern)
-    Enum.map(files, read_files)
+    pattern
+      |> Path.wildcard
+      |> Enum.map(files, read_files)
   end
 end

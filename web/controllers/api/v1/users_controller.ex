@@ -4,6 +4,7 @@ defmodule TheScratch.API.V1.TheScratch.UsersController do
   require Ecto.Query
   require Logger
 
+  alias Ecto.Query
   alias TheScratch.Repo
   alias TheScratch.User
 

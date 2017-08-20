@@ -50,20 +50,20 @@ defmodule TheScratch.AuthController do
     case user do
       %User{id: id, email: email, provider: provider} ->
         conn
-            |> put_resp_header("jwt", Plug.current_token(conn))
-            |> json(%{
-              id: Integer.to_string(id),
-              email: email,
-              provider: provider
-            })
+          |> put_resp_header("jwt", Plug.current_token(conn))
+          |> json(%{
+            id: Integer.to_string(id),
+            email: email,
+            provider: provider
+          })
       _ -> json(conn, nil)
     end
   end
 
   def sign_out(conn, _params) do
-      conn = Plug.sign_out(conn)
-      conn
-          |> clear_session
-          |> redirect(to: "/")
+    conn
+      |> Plug.sign_out
+      |> clear_session
+      |> redirect(to: "/")
     end
 end
