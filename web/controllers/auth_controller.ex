@@ -37,12 +37,11 @@ defmodule TheScratch.AuthController do
     end
 
     {:ok, jwt, _} = Guardian.encode_and_sign(user)
-    # Logger.debug "JWT: #{jwt}"
 
     conn
-    |> Plug.sign_in(user, jwt)
-    |> put_resp_header("authorization", "Bearer #{jwt}")
-    |> redirect(to: "/#/")
+      |> Plug.sign_in(user, jwt)
+      |> put_resp_header("authorization", "Bearer #{jwt}")
+      |> redirect(to: "/#/")
   end
 
   def user(conn, _params) do
