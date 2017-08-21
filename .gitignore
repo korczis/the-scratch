@@ -8,6 +8,7 @@
 /_build
 /db
 /deps
+/target
 /*.ez
 
 # Generated on crash by the VM
@@ -37,3 +38,6 @@ tmp/
 
 # Temporary local scripts
 .env.sh
+/target/
+**/*.rs.bk
+Cargo.lock
