@@ -12,8 +12,6 @@ defmodule TheScratch.API.V1.TheScratch.UsersController do
     query = Query.from u in User, select: u.id
     res = Repo.all(query)
 
-    Logger.debug(inspect(res))
-
     json(conn, res)
   end
 end
