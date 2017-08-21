@@ -6,20 +6,49 @@ dist: trusty
 
 sudo: true
 
+cache: cargo
+
+otp_release:
+  - 20.0
+
 services:
   - postgresql
 
 addons:
   postgresql: 9.5
+  apt:
+    packages:
+     - gdb
+     - apport
 
 env:
   - POSTGRES_PASSWORD="" MIX_ENV=test
 
 before_script:
+  # What is the current file size max for core files?
+  # It is usually 0, which means no core file will be dumped if there is a crash
+  - ulimit -c
+  - ulimit -a -S
+  - ulimit -a -H
+  - ulimit -c unlimited -S
+  - sudo bash -c "echo '/tmp/core.%p.%E' > /proc/sys/kernel/core_pattern"
+  - cat /proc/sys/kernel/core_pattern
+  - cat /etc/default/apport
+  - service --status-all || true
+  - initctl list || true
   - curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain nightly
+  - export PATH=$HOME/.cargo/bin:$PATH
+  - rustup update
+  - rustc -Vv
+  - cargo -V
+  - rustup component add rust-src
+  - export RUST_SRC_PATH=`rustc --print sysroot`/lib/rustlib/src/rust/src
+  - export RUST_BACKTRACE=1
+  - cargo build
   - mix deps.get --only test
   - nvm install 8.0 && nvm use 8.0
   - npm install -g elm elm-test
+
 
 script:
   - npm install
@@ -33,3 +62,6 @@ script:
   - mix ecto.create
   - mix ecto.migrate
   - mix coveralls.travis --trace
+  - for i in $(find /tmp -maxdepth 1 -name 'core*' -print); do gdb /home/travis/otp/20.0/erts-9.0/bin/beam.smp /tmp/core* -ex "thread apply all bt" -ex "set pagination 0" -batch; done;
+
+

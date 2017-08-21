@@ -1,0 +1,15 @@
+[package]
+name = "the-scratch"
+version = "0.1.0"
+authors = []
+
+[lib]
+name = "the_scratch"
+path = "src/lib.rs"
+crate-type = ["dylib"]
+
+[dependencies]
+# couchbase = { git = "https://github.com/couchbaselabs/couchbase-rs.git", rev = "e9748b2"  }
+rustler = "0.15"
+rustler_codegen = "0.15"
+lazy_static = "0.2"

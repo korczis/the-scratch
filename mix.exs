@@ -4,9 +4,10 @@
   def project do
     [app: :the_scratch,
      version: "0.0.1",
-     elixir: "~> 1.2",
+     elixir: "~> 1.5",
      elixirc_paths: elixirc_paths(Mix.env),
-     compilers: [:phoenix, :gettext] ++ Mix.compilers,
+     compilers: [:phoenix, :gettext, :rustler] ++ Mix.compilers,
+     rustler_crates: rustler_crates(),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      test_coverage: [tool: ExCoveralls],
@@ -65,6 +66,7 @@
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:postgrex, "~> 0.13"},
+     {:rustler, "~> 0.10"},
      {:ueberauth, "~> 0.4"},
      {:ueberauth_facebook, "~> 0.7"},
      {:ueberauth_github, "~> 0.5"},
@@ -73,5 +75,12 @@
      {:ueberauth_linkedin , "~> 0.3 "},
      {:ueberauth_twitter, "~> 0.2"}
      ]
+  end
+
+  defp rustler_crates do
+    [the_scratch: [
+        path: "native/the-scratch",
+        mode: :debug,
+    ]]
   end
 end

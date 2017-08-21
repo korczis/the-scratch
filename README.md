@@ -84,10 +84,7 @@ Single Page Application written in Elm with Elixir/Phoenix Backend
 - [ ] Presentation
   - [ ] Generated HTML5
 - [x] Router
-- [ ] Rust Integration
-  - [ ] Server-side (call rust from Elixir)
-  - [ ] Client-side (call rust from Elm)
-  - [ ] Zero-cost (abstraction)
+- [x] Rust Integration
 - [ ] Tests
   - [x] Server-side
     - [x] Coverage
