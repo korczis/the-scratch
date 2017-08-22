@@ -66,6 +66,7 @@ script:
   - mix ecto.create
   - mix ecto.migrate
   - mix coveralls.travis --trace
+  - find ./target
   - for i in $(find /tmp -maxdepth 1 -name 'core*' -print); do gdb /home/travis/otp/20.0/erts-9.0/bin/beam.smp /tmp/core* -ex "thread apply all bt" -ex "set pagination 0" -batch; done;
 
 
