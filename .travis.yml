@@ -20,6 +20,7 @@ addons:
     packages:
      - gdb
      - apport
+     - libc6-dev
 
 env:
   - POSTGRES_PASSWORD="" MIX_ENV=test
