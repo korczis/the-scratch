@@ -36,10 +36,10 @@ before_script:
   - ulimit -a -H
   - ulimit -c unlimited -S
   - sudo bash -c "echo '/tmp/core.%p.%E' > /proc/sys/kernel/core_pattern"
-  - cat /proc/sys/kernel/core_pattern
-  - cat /etc/default/apport
-  - service --status-all || true
-  - initctl list || true
+  # - cat /proc/sys/kernel/core_pattern
+  # - cat /etc/default/apport
+  # - service --status-all || true
+  # - initctl list || true
   - curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain nightly
   - export PATH=$HOME/.cargo/bin:$PATH
   - rustup update
@@ -63,6 +63,7 @@ script:
   - sudo make install
   - cd ..
   - /home/ubuntu/sysconfcpus/bin/sysconfcpus -n 2 npm run build
+  - mix ecto.create
   - mix ecto.create
   - mix ecto.migrate
   - mix coveralls.travis --trace
