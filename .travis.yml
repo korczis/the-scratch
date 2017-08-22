@@ -22,6 +22,8 @@ addons:
      - apport
      - libc6-dev
      - libc-dbg
+     - gdb-doc
+     - gdbserver
 
 env:
   - POSTGRES_PASSWORD="" MIX_ENV=test
