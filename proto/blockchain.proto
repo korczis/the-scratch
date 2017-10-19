@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+message BlockchainBlock {
+}
+
+message BlockchainTransaction {
+    required uint32 version = 1;
+    required uint32 size = 2;
+}

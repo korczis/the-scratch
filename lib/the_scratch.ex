@@ -18,7 +18,7 @@ defmodule TheScratch do
     children = [
       # Start the endpoint when the application starts
       supervisor(TheScratch.Endpoint, []),
-      supervisor(TheScratch.Repo, []),
+
       worker(TheScratch.Vfs, [vfs])
     ]
 

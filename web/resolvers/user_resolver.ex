@@ -3,12 +3,13 @@ defmodule TheScratch.UserResolver do
   GraphQL Resolver - User
   """
 
-  alias TheScratch.Repo
   alias TheScratch.User
 
   require Logger
 
   def find(%{id: id}, _info) do
-    {:ok, Repo.get(User, id)}
+    # TODO: Implement (Couchbase)
+    user = {}
+    {:ok, user}
   end
 end

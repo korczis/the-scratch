@@ -4,37 +4,49 @@ defmodule TheScratch.AuthController do
   """
 
   require Logger
-  require Ecto.Query
 
-  alias Ecto.Query
   alias Guardian.Plug
-  alias TheScratch.Repo
-  alias TheScratch.User
+  alias TheScratch.Proto.User
 
   use TheScratch.Web, :controller
   plug Ueberauth
+
+  alias Ueberauth.Strategy.Helpers
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, params) do
     provider = Map.fetch!(params, "provider")
     user = auth.extra.raw_info.user
     email = Map.fetch!(user, "email")
+    user_id = Map.fetch!(user, "id")
 
-    query = Query.from u in User,
-      where: u.provider == ^provider and u.email == ^email
+    id = "user.#{provider}.#{user_id}"
 
-    user = case Repo.one(query) do
-      nil -> {
-        case Repo.insert %User{
-          email: email,
-          provider: provider,
-          profile: user
-        } do
-          {:ok, u} -> u
-          _ -> nil
-        end
-      }
-      u -> u
-    end
+    # TODO: Implement (Couchbase)
+    user = %User{
+      id: id,
+      email: email,
+      provider: provider,
+    #  profile: user
+    }
+
+    TheScratch.Couchbase.upsert(id, user)
+
+#    query = Query.from u in User,
+#      where: u.provider == ^provider and u.email == ^email
+#
+#    user = case Repo.one(query) do
+#      nil -> {
+#        case Repo.insert %User{
+#          email: email,
+#          provider: provider,
+#          profile: user
+#        } do
+#          {:ok, u} -> u
+#          _ -> nil
+#        end
+#      }
+#      u -> u
+#    end
 
     {:ok, jwt, _} = Guardian.encode_and_sign(user)
 
@@ -51,7 +63,7 @@ defmodule TheScratch.AuthController do
         conn
           |> put_resp_header("jwt", Plug.current_token(conn))
           |> json(%{
-            id: Integer.to_string(id),
+            id: id,
             email: email,
             provider: provider
           })

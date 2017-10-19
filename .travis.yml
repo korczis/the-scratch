@@ -26,7 +26,8 @@ addons:
      - gdbserver
 
 env:
-  - POSTGRES_PASSWORD="" MIX_ENV=test
+  - POSTGRES_PASSWORD=""
+  - MIX_ENV=test
 
 before_script:
   # What is the current file size max for core files?

@@ -1,0 +1,4 @@
+message CurrencyPair {
+    required string first = 1;
+    required string second = 2;
+}

@@ -5,7 +5,7 @@ defmodule TheScratch.GuardianSerializer do
 
   @behaviour Guardian.Serializer
 
-  alias TheScratch.User
+  alias TheScratch.Proto.User
 
   def for_token(%User{} = user) do
     {:ok, %{id: user.id, email: user.email, provider: user.provider}}

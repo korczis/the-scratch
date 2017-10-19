@@ -1,0 +1,88 @@
+syntax = "proto2";
+
+message OrderBookEntry {
+    required double amount = 1;
+    required double price = 2;
+}
+
+message OrderBook {
+    required string exchange = 1;
+    required string pair = 2;
+    required string from = 3;
+    required string to = 4;
+    repeated OrderBookEntry asks = 5;
+    repeated OrderBookEntry bids = 6;
+    required int64 ts = 7;
+}
+
+message OrderBookDiff {
+    required string exchange = 1;
+    required string pair = 2;
+    required string from = 3;
+    required string to = 4;
+    repeated OrderBookEntry asks = 5;
+    repeated OrderBookEntry bids = 6;
+    required int64 ts = 7;
+}
+
+message OrderChange {
+    required string id = 1;
+    required string exchange = 2;
+    required string pair = 3;
+    required string from = 4;
+    required string to = 5;
+    required double amount = 6;
+    required double price = 7;
+    required int64 ts = 8;
+}
+
+message OrderCreate {
+    required string id = 1;
+    required string exchange = 2;
+    required string pair = 3;
+    required string from = 4;
+    required string to = 5;
+    required double amount = 6;
+    required double price = 7;
+    required int64 ts = 8;
+}
+
+message OrderDelete {
+    required string id = 1;
+    required string exchange = 2;
+    required string pair = 3;
+    required string from = 4;
+    required string to = 5;
+    required double amount = 6;
+    required double price = 7;
+    required int64 ts = 8;
+}
+
+message OrderTrade {
+    required string id = 1;
+    required string exchange = 2;
+    required string pair = 3;
+    required string from = 4;
+    required string to = 5;
+    required double amount = 6;
+    required double price = 7;
+    required int64 ts = 8;
+}
+
+message Order {
+    required string id = 1;
+    required string exchange = 2;
+    repeated string pair = 3;
+    required string curr_from = 4;
+    required string curr_to = 5;
+    required double price = 6;
+    required double amount = 7;
+    required string type = 8;
+    required string state = 9;
+    required OrderTimestamps ts = 10;
+}
+
+message OrderTimestamps {
+    optional int64 created = 1;
+    optional int64 deleted = 2;
+}

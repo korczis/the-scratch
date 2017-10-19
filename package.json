@@ -13,8 +13,8 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "node_modules/webpack/bin/webpack.js --progress --color --debug --config webpack/webpack.config.js",
-        "watch": "node_modules/webpack/bin/webpack.js --watch-stdin --progress --color --config webpack/webpack.config.js",
+        "build": "node_modules/webpack/bin/webpack.js --color --debug --config webpack/webpack.config.js",
+        "watch": "node_modules/webpack/bin/webpack.js --watch-stdin --color --config webpack/webpack.config.js",
         "elm-format": "./node_modules/elm-format/bin/elm-format web/elm/"
     },
     "author": "",
