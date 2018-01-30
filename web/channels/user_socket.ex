@@ -27,8 +27,8 @@ defmodule TheScratch.UserSocket do
 
     case sign_in(socket, jwt) do
       {:ok, authed_socket, _guardian_params} ->
-        # user = current_resource(authed_socket)
-        # Logger.debug "USER: #{inspect(user)}"
+        user = current_resource(authed_socket)
+        Logger.debug "USER: #{inspect(user)}"
 
         {:ok, authed_socket}
       _ ->
