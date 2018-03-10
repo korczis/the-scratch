@@ -63,7 +63,7 @@ defmodule TheScratch.Mixfile do
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
       {:exfmt, github: "lpil/exfmt", only: [:dev, :test], runtime: false},
       {:exprotobuf, "~> 1.2"},
-      {:gauc, "~> 0.11"},
+      {:gauc, "~> 0.16"},
       {:gettext, "~> 0.13"},
       {:guardian, "~> 0.14"},
       {:oauth, github: "tim/erlang-oauth"},

@@ -7,9 +7,11 @@ use Mix.Config
 
 config :gauc, Gauc,
        url: "couchbase://localhost/default",
+       username: "Administrator",
+       password: "Administrator",
        pool: [
-         size: 2,
-         max_overflow: 4
+         size: 4,
+         max_overflow: 8
        ]
 
 # Configures the endpoint

@@ -132,8 +132,6 @@ To start your Phoenix app:
 - Install bower dependencies with `bower install`
 - Install elm dependencies with `elm package install`
 - Install dependencies with `mix deps.get`
-- Create Ecto Databases with `mix ecto.create`
-- Migrate Ecto Databases with `mix ecto.migrate`
 - Start Phoenix endpoint with `mix phoenix.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
